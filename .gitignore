@@ -1,0 +1,35 @@
+# macOS
+.DS_Store
+
+# Xcode user data (not shared)
+xcuserdata/
+*.xcuserstate
+
+# Swift Package Manager build artifacts
+.build/
+.swiftpm/configuration/registries.json
+.swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
+.netrc
+
+# DerivedData (if ever placed in-repo)
+DerivedData/
+
+# Build products
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+# CocoaPods / Carthage (not used but harmless)
+Pods/
+Carthage/Build/
+
+# fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
