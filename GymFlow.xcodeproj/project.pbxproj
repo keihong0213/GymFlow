@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		33FFB3722F9159330072E229 /* GymFlowCore in Frameworks */ = {isa = PBXBuildFile; productRef = 33FFB3712F9159330072E229 /* GymFlowCore */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		33FFB3452F9159320072E229 /* GymFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33FFB3722F9159330072E229 /* GymFlowCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 			);
 			name = GymFlow;
 			packageProductDependencies = (
+				33FFB3712F9159330072E229 /* GymFlowCore */,
 			);
 			productName = GymFlow;
 			productReference = 33FFB3452F9159320072E229 /* GymFlow.app */;
@@ -90,10 +96,17 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"zh-Hant",
+				"zh-Hans",
+				ja,
+				ko,
 				Base,
 			);
 			mainGroup = 33FFB33C2F9159320072E229;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				33FFB3702F9159330072E229 /* XCLocalSwiftPackageReference "GymFlowCore" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 33FFB3462F9159320072E229 /* Products */;
 			projectDirPath = "";
@@ -178,7 +191,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -236,7 +249,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -332,6 +345,21 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		33FFB3702F9159330072E229 /* XCLocalSwiftPackageReference "GymFlowCore" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = GymFlowCore;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		33FFB3712F9159330072E229 /* GymFlowCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 33FFB3702F9159330072E229 /* XCLocalSwiftPackageReference "GymFlowCore" */;
+			productName = GymFlowCore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 33FFB33D2F9159320072E229 /* Project object */;
 }

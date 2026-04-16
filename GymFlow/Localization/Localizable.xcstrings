@@ -1,0 +1,216 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "app.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "GymFlow" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "GymFlow" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "GymFlow" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "GymFlow" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "GymFlow" } }
+      }
+    },
+    "category.barbell" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Barbell" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "バーベル" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "바벨" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "杠铃" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "槓鈴" } }
+      }
+    },
+    "category.bodyweight" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Bodyweight" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "自重" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "자중" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "徒手" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "徒手" } }
+      }
+    },
+    "category.cardio" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Cardio" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "有酸素" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "유산소" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "有氧" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "有氧" } }
+      }
+    },
+    "category.dumbbell" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Dumbbell" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "ダンベル" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "덤벨" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "哑铃" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "啞鈴" } }
+      }
+    },
+    "category.machine" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Machine" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "マシン" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "머신" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "器械" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "器械" } }
+      }
+    },
+    "category.other" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Other" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "その他" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "기타" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "其他" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "其他" } }
+      }
+    },
+    "home.last_workout" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Last Workout" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "前回のトレーニング" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "지난 운동" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "上次训练" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "上次訓練" } }
+      }
+    },
+    "home.start_workout" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Start Workout" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "トレーニング開始" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "운동 시작" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "开始训练" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "開始訓練" } }
+      }
+    },
+    "language.en" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "English" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "英語" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "영어" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "英文" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "英文" } }
+      }
+    },
+    "language.ja" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Japanese" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "日本語" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "일본어" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "日文" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "日文" } }
+      }
+    },
+    "language.ko" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Korean" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "韓国語" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "한국어" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "韩文" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "韓文" } }
+      }
+    },
+    "language.system" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "System" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "システム" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "시스템" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "系统" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "系統" } }
+      }
+    },
+    "language.zh-Hans" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Simplified Chinese" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "簡体字中国語" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "중국어 간체" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "简体中文" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "簡體中文" } }
+      }
+    },
+    "language.zh-Hant" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Traditional Chinese" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "繁体字中国語" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "중국어 번체" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "繁体中文" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "繁體中文" } }
+      }
+    },
+    "loading" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Loading…" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "読み込み中…" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "불러오는 중…" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "载入中…" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "載入中…" } }
+      }
+    },
+    "settings.language" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Language" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "言語" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "언어" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "语言" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "語言" } }
+      }
+    },
+    "settings.units" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Units" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "単位" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "단위" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "单位" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "單位" } }
+      }
+    },
+    "tabs.home" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Home" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "ホーム" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "홈" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "首页" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "首頁" } }
+      }
+    },
+    "tabs.settings" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Settings" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "設定" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "설정" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "设置" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "設定" } }
+      }
+    },
+    "tabs.templates" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Templates" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "テンプレート" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "템플릿" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "课表" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "課表" } }
+      }
+    }
+  },
+  "version" : "1.0"
+}
