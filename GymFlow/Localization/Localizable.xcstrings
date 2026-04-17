@@ -181,6 +181,196 @@
         "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "刪除" } }
       }
     },
+    "common.done" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Done" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "完了" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "완료" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "完成" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "完成" } }
+      }
+    },
+    "common.edit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Edit" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "編集" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "편집" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "编辑" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "編輯" } }
+      }
+    },
+    "common.save" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Save" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "保存" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "저장" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "储存" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "儲存" } }
+      }
+    },
+    "home.from_template" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Start from Template" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "テンプレートから開始" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "템플릿으로 시작" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "从课表开始" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "從課表開始" } }
+      }
+    },
+    "routine.push" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Push Day" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "プッシュ" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "푸시" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "推（Push）" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "推（Push）" } }
+      }
+    },
+    "routine.pull" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Pull Day" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "プル" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "풀" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "拉（Pull）" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "拉（Pull）" } }
+      }
+    },
+    "routine.legs" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Leg Day" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "レッグ" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "하체" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "腿（Legs）" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "腿（Legs）" } }
+      }
+    },
+    "routine.start" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Start with this routine" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "このルーティンで開始" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "이 루틴으로 시작" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "用此课表开始" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "用此課表開始" } }
+      }
+    },
+    "routine.edit_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Edit Routine" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "ルーティンを編集" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "루틴 편집" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "编辑课表" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "編輯課表" } }
+      }
+    },
+    "routine.name_placeholder" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Routine name" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "ルーティン名" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "루틴 이름" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "课表名称" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "課表名稱" } }
+      }
+    },
+    "routine.exercises" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Exercises" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "種目" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "종목" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "动作" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "動作" } }
+      }
+    },
+    "routine.no_exercises_yet" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "No exercises yet." } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "まだ種目がありません。" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "아직 종목이 없습니다." } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "还没有动作。" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "還沒有動作。" } }
+      }
+    },
+    "routine.target_sets" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "%d sets" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "%d セット" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "%d 세트" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "%d 组" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "%d 組" } }
+      }
+    },
+    "routine.target_sets_reps" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "%1$d sets × %2$@ reps" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "%1$d セット × %2$@ 回" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "%1$d 세트 × %2$@ 회" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "%1$d 组 × %2$@ 下" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "%1$d 組 × %2$@ 下" } }
+      }
+    },
+    "routines.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Routines" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "ルーティン" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "루틴" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "课表" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "課表" } }
+      }
+    },
+    "routines.built_in" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Built-in" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "内蔵" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "기본 제공" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "内建" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "內建" } }
+      }
+    },
+    "routines.custom" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Custom" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "カスタム" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "사용자 지정" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "自订" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "自訂" } }
+      }
+    },
+    "routines.new" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "New Routine" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "新しいルーティン" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "새 루틴" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "新增课表" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "新增課表" } }
+      }
+    },
+    "routines.exercises_count %lld" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "%lld exercises" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "%lld 種目" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "%lld 종목" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "%lld 个动作" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "%lld 個動作" } }
+      }
+    },
     "exercise_picker.title" : {
       "extractionState" : "manual",
       "localizations" : {

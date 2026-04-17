@@ -8,6 +8,7 @@ struct HomeView: View {
 
     @State private var model = HomeViewModel()
     @State private var activeSession: Workout?
+    @State private var showRoutines = false
 
     var body: some View {
         NavigationStack {
@@ -17,6 +18,7 @@ struct HomeView: View {
                     workoutSection
                     Spacer().frame(height: 8)
                     startButton
+                    templatesButton
                 }
                 .padding(.horizontal, 20)
                 .padding(.top, 8)
@@ -35,6 +37,8 @@ struct HomeView: View {
                 }
             } else if args.contains("--open-session"), activeSession == nil {
                 startWorkout()
+            } else if args.contains("--open-routines"), !showRoutines {
+                showRoutines = true
             }
             #endif
         }
@@ -44,6 +48,15 @@ struct HomeView: View {
                 .environment(language)
                 .environment(\.locale, language.effectiveLocale)
                 .onDisappear { model.load(bootstrap: bootstrap) }
+        }
+        .sheet(isPresented: $showRoutines) {
+            RoutinesView { routine in
+                showRoutines = false
+                startFromRoutine(routine)
+            }
+            .environment(bootstrap)
+            .environment(language)
+            .environment(\.locale, language.effectiveLocale)
         }
     }
 
@@ -104,12 +117,34 @@ struct HomeView: View {
         .tint(.accentColor)
     }
 
+    private var templatesButton: some View {
+        Button {
+            showRoutines = true
+        } label: {
+            Text("home.from_template")
+                .font(.subheadline.weight(.semibold))
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 14)
+        }
+        .buttonStyle(.bordered)
+        .tint(.accentColor)
+    }
+
     private func startWorkout() {
         do {
             let workout = try bootstrap.workoutRepo.start()
             activeSession = workout
         } catch {
             // swallow: in practice log / show alert
+        }
+    }
+
+    private func startFromRoutine(_ routine: Routine) {
+        do {
+            let workout = try bootstrap.workoutRepo.startFromRoutine(routineId: routine.id)
+            activeSession = workout
+        } catch {
+            // swallow
         }
     }
 

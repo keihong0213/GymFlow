@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "routines": [
+    {
+      "slug": "push",
+      "exercises": [
+        { "slug": "bench_press",          "targetSets": 4, "targetRepsMin": 6,  "targetRepsMax": 10, "defaultRestSeconds": 120 },
+        { "slug": "incline_bench_press",  "targetSets": 3, "targetRepsMin": 8,  "targetRepsMax": 12, "defaultRestSeconds": 90 },
+        { "slug": "overhead_press",       "targetSets": 3, "targetRepsMin": 6,  "targetRepsMax": 10, "defaultRestSeconds": 120 },
+        { "slug": "lateral_raise",        "targetSets": 3, "targetRepsMin": 10, "targetRepsMax": 15, "defaultRestSeconds": 60 },
+        { "slug": "tricep_pushdown",      "targetSets": 3, "targetRepsMin": 10, "targetRepsMax": 12, "defaultRestSeconds": 60 }
+      ]
+    },
+    {
+      "slug": "pull",
+      "exercises": [
+        { "slug": "deadlift",             "targetSets": 3, "targetRepsMin": 3,  "targetRepsMax": 5,  "defaultRestSeconds": 180 },
+        { "slug": "pull_up",              "targetSets": 3, "targetRepsMin": 6,  "targetRepsMax": 10, "defaultRestSeconds": 120 },
+        { "slug": "barbell_row",          "targetSets": 3, "targetRepsMin": 8,  "targetRepsMax": 12, "defaultRestSeconds": 90 },
+        { "slug": "seated_cable_row",     "targetSets": 3, "targetRepsMin": 10, "targetRepsMax": 12, "defaultRestSeconds": 60 },
+        { "slug": "db_bicep_curl",        "targetSets": 3, "targetRepsMin": 10, "targetRepsMax": 12, "defaultRestSeconds": 60 }
+      ]
+    },
+    {
+      "slug": "legs",
+      "exercises": [
+        { "slug": "back_squat",           "targetSets": 4, "targetRepsMin": 5,  "targetRepsMax": 8,  "defaultRestSeconds": 180 },
+        { "slug": "romanian_deadlift",    "targetSets": 3, "targetRepsMin": 8,  "targetRepsMax": 10, "defaultRestSeconds": 120 },
+        { "slug": "leg_press",            "targetSets": 3, "targetRepsMin": 10, "targetRepsMax": 12, "defaultRestSeconds": 90 },
+        { "slug": "leg_curl",             "targetSets": 3, "targetRepsMin": 10, "targetRepsMax": 12, "defaultRestSeconds": 60 },
+        { "slug": "standing_calf_raise",  "targetSets": 3, "targetRepsMin": 12, "targetRepsMax": 15, "defaultRestSeconds": 60 }
+      ]
+    }
+  ]
+}

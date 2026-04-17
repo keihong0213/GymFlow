@@ -17,6 +17,30 @@ public struct WorkoutRepository: Sendable {
         return workout
     }
 
+    @discardableResult
+    public func startFromRoutine(routineId: UUID, at date: Date = Date()) throws -> Workout {
+        try database.dbWriter.write { db in
+            let routineExercises = try RoutineExercise
+                .filter(Column("routine_id") == routineId.uuidString)
+                .order(Column("order_index"))
+                .fetchAll(db)
+            guard !routineExercises.isEmpty else {
+                throw RoutineRepositoryError.routineHasNoExercises
+            }
+            let workout = Workout(startedAt: date, routineId: routineId)
+            try workout.insert(db)
+            for (idx, link) in routineExercises.enumerated() {
+                let we = WorkoutExercise(
+                    workoutId: workout.id,
+                    exerciseId: link.exerciseId,
+                    orderIndex: idx
+                )
+                try we.insert(db)
+            }
+            return workout
+        }
+    }
+
     public func end(workoutId: UUID, at date: Date = Date()) throws {
         try database.dbWriter.write { db in
             if var workout = try Workout.fetchOne(db, key: workoutId.uuidString) {
