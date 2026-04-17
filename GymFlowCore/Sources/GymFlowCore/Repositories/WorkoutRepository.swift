@@ -115,9 +115,23 @@ public struct WorkoutRepository: Sendable {
         }
     }
 
-    public func lastWorkoutExercise(for exerciseId: UUID) throws -> WorkoutExercise? {
+    public func lastWorkoutExercise(for exerciseId: UUID, excludingWorkoutId: UUID? = nil) throws -> WorkoutExercise? {
         try database.reader.read { db in
-            try WorkoutExercise.fetchOne(
+            if let excluding = excludingWorkoutId {
+                return try WorkoutExercise.fetchOne(
+                    db,
+                    sql: """
+                    SELECT we.*
+                    FROM workout_exercise we
+                    JOIN workout w ON w.id = we.workout_id
+                    WHERE we.exercise_id = ? AND w.id != ?
+                    ORDER BY w.started_at DESC
+                    LIMIT 1
+                    """,
+                    arguments: [exerciseId.uuidString, excluding.uuidString]
+                )
+            }
+            return try WorkoutExercise.fetchOne(
                 db,
                 sql: """
                 SELECT we.*
@@ -132,8 +146,8 @@ public struct WorkoutRepository: Sendable {
         }
     }
 
-    public func lastSets(for exerciseId: UUID) throws -> [SetEntry] {
-        guard let last = try lastWorkoutExercise(for: exerciseId) else { return [] }
+    public func lastSets(for exerciseId: UUID, excludingWorkoutId: UUID? = nil) throws -> [SetEntry] {
+        guard let last = try lastWorkoutExercise(for: exerciseId, excludingWorkoutId: excludingWorkoutId) else { return [] }
         return try sets(for: last.id)
     }
 

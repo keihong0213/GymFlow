@@ -421,6 +421,36 @@
         "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "要結束這次訓練嗎？" } }
       }
     },
+    "session.end_failed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Couldn’t end workout" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "終了できませんでした" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "종료하지 못했습니다" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "无法结束训练" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "無法結束訓練" } }
+      }
+    },
+    "session.end_failed_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "The workout is still active. Please try again." } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "トレーニングは継続中です。もう一度お試しください。" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "운동이 아직 진행 중입니다. 다시 시도해 주세요." } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "训练仍在进行中，请再试一次。" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "訓練仍在進行中，請再試一次。" } }
+      }
+    },
+    "common.ok" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "OK" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "OK" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "확인" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "好" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "好" } }
+      }
+    },
     "home.start_workout" : {
       "extractionState" : "manual",
       "localizations" : {

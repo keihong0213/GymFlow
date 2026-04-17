@@ -49,6 +49,30 @@ final class WorkoutRepositoryTests: XCTestCase {
         XCTAssertEqual(last.first?.weightKg, 62.5)
     }
 
+    func test_lastSets_excludingWorkoutId_skipsCurrentActive() throws {
+        let db = try AppDatabase.inMemory()
+        try ExerciseSeedLoader.seed(into: db)
+        let exercises = ExerciseRepository(database: db)
+        let workouts = WorkoutRepository(database: db)
+
+        let bench = try XCTUnwrap(try exercises.find(slug: "bench_press"))
+
+        let prior = try workouts.start(at: Date(timeIntervalSince1970: 1_000))
+        let wePrior = try workouts.addExercise(workoutId: prior.id, exerciseId: bench.id)
+        _ = try workouts.addSet(workoutExerciseId: wePrior.id, weightKg: 60, reps: 10)
+        _ = try workouts.addSet(workoutExerciseId: wePrior.id, weightKg: 60, reps: 8)
+
+        let active = try workouts.start(at: Date(timeIntervalSince1970: 2_000))
+        _ = try workouts.addExercise(workoutId: active.id, exerciseId: bench.id)
+
+        let unfiltered = try workouts.lastSets(for: bench.id)
+        XCTAssertTrue(unfiltered.isEmpty, "without exclusion, finds current active WE which has no sets")
+
+        let filtered = try workouts.lastSets(for: bench.id, excludingWorkoutId: active.id)
+        XCTAssertEqual(filtered.count, 2)
+        XCTAssertEqual(filtered.map(\.reps), [10, 8])
+    }
+
     func test_cascadingDelete_workoutRemovesChildren() throws {
         let db = try AppDatabase.inMemory()
         try ExerciseSeedLoader.seed(into: db)

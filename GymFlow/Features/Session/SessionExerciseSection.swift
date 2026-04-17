@@ -66,10 +66,14 @@ struct SessionExerciseSection: View {
         .contentShape(Rectangle())
     }
 
+    private var nextSetNumber: Int {
+        (section.sets.map(\.setNumber).max() ?? 0) + 1
+    }
+
     @ViewBuilder
     private var inputRow: some View {
         HStack(spacing: 10) {
-            Text("\(section.sets.count + 1)")
+            Text("\(nextSetNumber)")
                 .font(.subheadline.weight(.semibold))
                 .monospacedDigit()
                 .frame(width: 24, alignment: .leading)

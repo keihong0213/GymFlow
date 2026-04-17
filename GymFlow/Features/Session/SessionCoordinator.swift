@@ -40,25 +40,22 @@ final class SessionCoordinator {
     }
 
     func loadExistingContents() {
-        do {
-            let rows = try workoutRepo.exercises(for: workout.id)
-            var loaded: [SessionExercise] = []
-            for row in rows {
-                guard let ex = try exerciseRepo.find(id: row.exerciseId) else { continue }
-                let sets = try workoutRepo.sets(for: row.id)
-                let previous = try workoutRepo.lastSets(for: ex.id)
-                let previousFiltered = previous.filter { $0.workoutExerciseId != row.id }
-                loaded.append(SessionExercise(
-                    workoutExerciseId: row.id,
-                    exercise: ex,
-                    sets: sets,
-                    previousSets: previousFiltered
-                ))
-            }
-            exercises = loaded
-        } catch {
-            exercises = []
+        guard let rows = try? workoutRepo.exercises(for: workout.id) else {
+            return
         }
+        var loaded: [SessionExercise] = []
+        for row in rows {
+            guard let ex = (try? exerciseRepo.find(id: row.exerciseId)) ?? nil else { continue }
+            let sets = (try? workoutRepo.sets(for: row.id)) ?? []
+            let previous = (try? workoutRepo.lastSets(for: ex.id, excludingWorkoutId: workout.id)) ?? []
+            loaded.append(SessionExercise(
+                workoutExerciseId: row.id,
+                exercise: ex,
+                sets: sets,
+                previousSets: previous
+            ))
+        }
+        exercises = loaded
     }
 
     func startTicking() {
@@ -80,8 +77,8 @@ final class SessionCoordinator {
     }
 
     func addExercise(_ exercise: Exercise) throws {
+        let previous = try workoutRepo.lastSets(for: exercise.id, excludingWorkoutId: workout.id)
         let we = try workoutRepo.addExercise(workoutId: workout.id, exerciseId: exercise.id)
-        let previous = try workoutRepo.lastSets(for: exercise.id)
         exercises.append(SessionExercise(
             workoutExerciseId: we.id,
             exercise: exercise,

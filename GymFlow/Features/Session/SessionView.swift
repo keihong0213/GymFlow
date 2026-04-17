@@ -9,6 +9,7 @@ struct SessionView: View {
     @State private var coordinator: SessionCoordinator
     @State private var showExercisePicker = false
     @State private var showEndConfirm = false
+    @State private var endFailed = false
 
     let unit: WeightUnit
 
@@ -91,10 +92,19 @@ struct SessionView: View {
                 titleVisibility: .visible
             ) {
                 Button("session.end", role: .destructive) {
-                    try? coordinator.end()
-                    dismiss()
+                    do {
+                        try coordinator.end()
+                        dismiss()
+                    } catch {
+                        endFailed = true
+                    }
                 }
                 Button("common.cancel", role: .cancel) {}
+            }
+            .alert("session.end_failed", isPresented: $endFailed) {
+                Button("common.ok", role: .cancel) {}
+            } message: {
+                Text("session.end_failed_message")
             }
         }
         .interactiveDismissDisabled(true)
