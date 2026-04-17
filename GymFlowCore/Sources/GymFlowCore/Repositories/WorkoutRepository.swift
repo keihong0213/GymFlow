@@ -73,6 +73,15 @@ public struct WorkoutRepository: Sendable {
         }
     }
 
+    public func exercises(for workoutId: UUID) throws -> [WorkoutExercise] {
+        try database.reader.read { db in
+            try WorkoutExercise
+                .filter(Column("workout_id") == workoutId.uuidString)
+                .order(Column("order_index"))
+                .fetchAll(db)
+        }
+    }
+
     public func sets(for workoutExerciseId: UUID) throws -> [SetEntry] {
         try database.reader.read { db in
             try SetEntry
@@ -107,6 +116,23 @@ public struct WorkoutRepository: Sendable {
     public func deleteAll() throws {
         try database.dbWriter.write { db in
             _ = try Workout.deleteAll(db)
+        }
+    }
+
+    @discardableResult
+    public func deleteSet(id: UUID) throws -> Bool {
+        try database.dbWriter.write { db in
+            try SetEntry.deleteOne(db, key: id.uuidString)
+        }
+    }
+
+    public func updateSet(id: UUID, weightKg: Double, reps: Int) throws {
+        try database.dbWriter.write { db in
+            if var set = try SetEntry.fetchOne(db, key: id.uuidString) {
+                set.weightKg = weightKg
+                set.reps = reps
+                try set.update(db)
+            }
         }
     }
 

@@ -7,6 +7,7 @@ struct HomeView: View {
     @Environment(\.locale) private var locale
 
     @State private var model = HomeViewModel()
+    @State private var activeSession: Workout?
 
     var body: some View {
         NavigationStack {
@@ -24,7 +25,26 @@ struct HomeView: View {
             .navigationTitle("app.title")
             .toolbar { toolbarContent }
         }
-        .task { model.load(bootstrap: bootstrap) }
+        .task {
+            model.load(bootstrap: bootstrap)
+            #if DEBUG
+            let args = ProcessInfo.processInfo.arguments
+            if args.contains("--demo-active-session"), activeSession == nil {
+                if let workout = try? DemoDataSeeder.seedActiveSession(bootstrap: bootstrap) {
+                    activeSession = workout
+                }
+            } else if args.contains("--open-session"), activeSession == nil {
+                startWorkout()
+            }
+            #endif
+        }
+        .fullScreenCover(item: $activeSession) { workout in
+            SessionView(workout: workout, bootstrap: bootstrap)
+                .environment(bootstrap)
+                .environment(language)
+                .environment(\.locale, language.effectiveLocale)
+                .onDisappear { model.load(bootstrap: bootstrap) }
+        }
     }
 
     @ViewBuilder
@@ -73,7 +93,7 @@ struct HomeView: View {
 
     private var startButton: some View {
         Button {
-            // Will be wired to Workout Session in PR 5.
+            startWorkout()
         } label: {
             Text("home.start_workout")
                 .font(.headline)
@@ -82,6 +102,15 @@ struct HomeView: View {
         }
         .buttonStyle(.borderedProminent)
         .tint(.accentColor)
+    }
+
+    private func startWorkout() {
+        do {
+            let workout = try bootstrap.workoutRepo.start()
+            activeSession = workout
+        } catch {
+            // swallow: in practice log / show alert
+        }
     }
 
     @ToolbarContentBuilder

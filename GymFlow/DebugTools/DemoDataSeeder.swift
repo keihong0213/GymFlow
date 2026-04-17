@@ -57,5 +57,29 @@ enum DemoDataSeeder {
     static func clearWorkouts(bootstrap: AppBootstrap) throws {
         try bootstrap.workoutRepo.deleteAll()
     }
+
+    @discardableResult
+    static func seedActiveSession(bootstrap: AppBootstrap, now: Date = Date()) throws -> Workout {
+        let exercises = bootstrap.exerciseRepo
+        let workouts = bootstrap.workoutRepo
+        let startedAt = now.addingTimeInterval(-25 * 60)
+
+        let workout = try workouts.start(at: startedAt)
+
+        if let bench = try exercises.find(slug: "bench_press") {
+            let we = try workouts.addExercise(workoutId: workout.id, exerciseId: bench.id)
+            _ = try workouts.addSet(workoutExerciseId: we.id, weightKg: 75, reps: 10)
+            _ = try workouts.addSet(workoutExerciseId: we.id, weightKg: 75, reps: 9)
+            _ = try workouts.addSet(workoutExerciseId: we.id, weightKg: 77.5, reps: 8)
+        }
+
+        if let row = try exercises.find(slug: "barbell_row") {
+            let we = try workouts.addExercise(workoutId: workout.id, exerciseId: row.id)
+            _ = try workouts.addSet(workoutExerciseId: we.id, weightKg: 60, reps: 10)
+            _ = try workouts.addSet(workoutExerciseId: we.id, weightKg: 60, reps: 8)
+        }
+
+        return workout
+    }
 }
 #endif

@@ -161,6 +161,76 @@
         "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "清除訓練紀錄" } }
       }
     },
+    "common.cancel" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Cancel" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "キャンセル" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "취소" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "取消" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "取消" } }
+      }
+    },
+    "common.delete" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Delete" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "削除" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "삭제" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "删除" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "刪除" } }
+      }
+    },
+    "exercise_picker.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Pick Exercise" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "種目を選ぶ" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "종목 선택" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "选择动作" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "選擇動作" } }
+      }
+    },
+    "exercise_picker.search_placeholder" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Search exercises" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "種目を検索" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "종목 검색" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "搜寻动作" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "搜尋動作" } }
+      }
+    },
+    "session.add_exercise" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Add Exercise" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "種目を追加" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "종목 추가" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "添加动作" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "新增動作" } }
+      }
+    },
+    "session.end" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "End" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "終了" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "종료" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "结束" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "結束" } }
+      }
+    },
+    "session.end_confirm" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "End this workout?" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "このトレーニングを終了しますか？" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "이 운동을 종료할까요?" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "要结束这次训练吗？" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "要結束這次訓練嗎？" } }
+      }
+    },
     "home.start_workout" : {
       "extractionState" : "manual",
       "localizations" : {
