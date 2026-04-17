@@ -147,7 +147,13 @@ struct SessionSummaryView: View {
                 .font(.subheadline.weight(.semibold))
             VStack(spacing: 0) {
                 ForEach(exercises) { row in
-                    exerciseRow(row)
+                    NavigationLink {
+                        ExerciseDetailView(exercise: row.exercise, unit: unit)
+                            .environment(bootstrap)
+                    } label: {
+                        exerciseRow(row)
+                    }
+                    .buttonStyle(.plain)
                     if row.id != exercises.last?.id {
                         Divider().padding(.leading, 12)
                     }
@@ -167,6 +173,7 @@ struct SessionSummaryView: View {
             VStack(alignment: .leading, spacing: 2) {
                 Text(bootstrap.localizer.displayName(for: row.exercise, locale: locale))
                     .font(.subheadline.weight(.medium))
+                    .foregroundStyle(.primary)
                 if let top = row.topSet {
                     Text("summary.top_set \(weightString(for: top.weightKg)) \(top.reps)")
                         .font(.caption)
@@ -178,9 +185,13 @@ struct SessionSummaryView: View {
                 .font(.caption)
                 .foregroundStyle(.secondary)
                 .monospacedDigit()
+            Image(systemName: "chevron.right")
+                .font(.caption2)
+                .foregroundStyle(.tertiary)
         }
         .padding(.vertical, 8)
         .padding(.horizontal, 12)
+        .contentShape(Rectangle())
     }
 
     private var durationString: String {

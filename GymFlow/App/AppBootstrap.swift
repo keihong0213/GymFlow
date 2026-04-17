@@ -7,6 +7,7 @@ final class AppBootstrap {
     let exerciseRepo: ExerciseRepository
     let workoutRepo: WorkoutRepository
     let routineRepo: RoutineRepository
+    let prRepo: PRRepository
     let prCalculator: PRCalculator
     let localizer: ExerciseLocalizer
 
@@ -25,6 +26,7 @@ final class AppBootstrap {
         self.exerciseRepo = ExerciseRepository(database: database)
         self.workoutRepo = WorkoutRepository(database: database)
         self.routineRepo = RoutineRepository(database: database)
+        self.prRepo = PRRepository(database: database)
         self.prCalculator = PRCalculator(database: database)
         self.localizer = try ExerciseLocalizer()
     }

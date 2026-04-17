@@ -121,6 +121,66 @@
         "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "估計 1RM" } }
       }
     },
+    "detail.personal_records" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Personal Records" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "個人記録" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "개인 기록" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "个人纪录" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "個人紀錄" } }
+      }
+    },
+    "detail.e1rm_trend" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "e1RM Trend" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "推定 1RM の推移" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "추정 1RM 추이" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "估计 1RM 趋势" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "估計 1RM 趨勢" } }
+      }
+    },
+    "detail.recent_history" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Recent History" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "最近の履歴" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "최근 기록" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "近期历史" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "近期歷史" } }
+      }
+    },
+    "detail.no_history" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "No history yet for this exercise." } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "この種目の履歴はまだありません。" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "이 운동에 대한 기록이 아직 없습니다." } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "此动作还没有历史纪录。" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "此動作還沒有歷史紀錄。" } }
+      }
+    },
+    "detail.top_set %@ %lld" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Top: %1$@ × %2$lld" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "ベスト：%1$@ × %2$lld" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "최고: %1$@ × %2$lld" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "最佳：%1$@ × %2$lld" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "最佳：%1$@ × %2$lld" } }
+      }
+    },
+    "detail.sets_and_volume %lld %@" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "%1$lld sets · %2$@" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "%1$lld セット · %2$@" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "%1$lld 세트 · %2$@" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "%1$lld 组 · %2$@" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "%1$lld 組 · %2$@" } }
+      }
+    },
     "app.title" : {
       "extractionState" : "manual",
       "localizations" : {

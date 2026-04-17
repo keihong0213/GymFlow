@@ -189,6 +189,58 @@ public struct WorkoutRepository: Sendable {
         }
     }
 
+    public func history(for exerciseId: UUID, limit: Int = 10) throws -> [ExerciseHistoryEntry] {
+        try database.reader.read { db in
+            let workoutRows = try Row.fetchAll(
+                db,
+                sql: """
+                SELECT w.id AS w_id, w.started_at, w.ended_at
+                FROM workout w
+                WHERE EXISTS (
+                    SELECT 1 FROM workout_exercise we
+                    JOIN set_entry s ON s.workout_exercise_id = we.id
+                    WHERE we.workout_id = w.id
+                      AND we.exercise_id = ?
+                      AND s.is_warmup = 0
+                )
+                ORDER BY w.started_at DESC
+                LIMIT ?
+                """,
+                arguments: [exerciseId.uuidString, limit]
+            )
+            var entries: [ExerciseHistoryEntry] = []
+            for row in workoutRows {
+                guard let workoutIdString: String = row["w_id"],
+                      let workoutId = UUID(uuidString: workoutIdString),
+                      let startedAt: Date = row["started_at"] else { continue }
+                let endedAt: Date? = row["ended_at"]
+                let sets = try SetEntry.fetchAll(
+                    db,
+                    sql: """
+                    SELECT s.* FROM set_entry s
+                    JOIN workout_exercise we ON we.id = s.workout_exercise_id
+                    WHERE we.workout_id = ?
+                      AND we.exercise_id = ?
+                      AND s.is_warmup = 0
+                    """,
+                    arguments: [workoutIdString, exerciseId.uuidString]
+                )
+                let top = sets.max(by: { $0.estimatedOneRepMaxKg < $1.estimatedOneRepMaxKg })
+                let volume = sets.reduce(0.0) { $0 + $1.volumeKg }
+                entries.append(ExerciseHistoryEntry(
+                    id: workoutId,
+                    workoutId: workoutId,
+                    startedAt: startedAt,
+                    endedAt: endedAt,
+                    topSet: top,
+                    totalVolumeKg: volume,
+                    setCount: sets.count
+                ))
+            }
+            return entries
+        }
+    }
+
     public func summary(for workoutId: UUID) throws -> WorkoutSummary? {
         try database.reader.read { db in
             guard let workout = try Workout.fetchOne(db, key: workoutId) else { return nil }
