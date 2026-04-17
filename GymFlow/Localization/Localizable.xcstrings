@@ -71,6 +71,16 @@
         "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "其他" } }
       }
     },
+    "home.exercises" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Exercises" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "種目" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "종목" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "动作" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "動作" } }
+      }
+    },
     "home.last_workout" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -79,6 +89,76 @@
         "ko" : { "stringUnit" : { "state" : "translated", "value" : "지난 운동" } },
         "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "上次训练" } },
         "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "上次訓練" } }
+      }
+    },
+    "home.no_workouts_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "No workouts yet" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "まだトレーニングがありません" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "아직 운동 기록이 없습니다" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "还没有训练记录" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "還沒有訓練紀錄" } }
+      }
+    },
+    "home.no_workouts_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tap Start to begin your first session." } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "「開始」をタップして最初のセッションを始めましょう。" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "시작 버튼을 눌러 첫 운동을 시작하세요." } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "点击「开始」展开第一次训练。" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "點擊「開始」展開第一次訓練。" } }
+      }
+    },
+    "home.recent_7_days" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Last 7 days" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "過去 7 日間" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "최근 7일" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "最近 7 天" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "最近 7 天" } }
+      }
+    },
+    "home.sets" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Sets" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "セット" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "세트" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "组数" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "組數" } }
+      }
+    },
+    "home.volume" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Volume" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "総重量" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "볼륨" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "总重量" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "總重量" } }
+      }
+    },
+    "debug.seed_demo" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Seed demo data" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "デモデータを挿入" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "데모 데이터 추가" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "插入示范资料" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "插入示範資料" } }
+      }
+    },
+    "debug.clear_workouts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Clear workouts" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "トレーニング履歴を削除" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "운동 기록 삭제" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "清除训练记录" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "清除訓練紀錄" } }
       }
     },
     "home.start_workout" : {

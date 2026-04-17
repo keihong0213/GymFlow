@@ -103,4 +103,58 @@ public struct WorkoutRepository: Sendable {
         guard let last = try lastWorkoutExercise(for: exerciseId) else { return [] }
         return try sets(for: last.id)
     }
+
+    public func deleteAll() throws {
+        try database.dbWriter.write { db in
+            _ = try Workout.deleteAll(db)
+        }
+    }
+
+    public func lastWorkout() throws -> Workout? {
+        try database.reader.read { db in
+            try Workout.order(sql: "started_at DESC").fetchOne(db)
+        }
+    }
+
+    public func workouts(since date: Date) throws -> [Workout] {
+        try database.reader.read { db in
+            try Workout
+                .filter(Column("started_at") >= date)
+                .order(Column("started_at"))
+                .fetchAll(db)
+        }
+    }
+
+    public func summary(for workoutId: UUID) throws -> WorkoutSummary? {
+        try database.reader.read { db in
+            guard let workout = try Workout.fetchOne(db, key: workoutId) else { return nil }
+            let id = workoutId.uuidString
+            let exerciseCount = try Int.fetchOne(
+                db,
+                sql: "SELECT COUNT(*) FROM workout_exercise WHERE workout_id = ?",
+                arguments: [id]
+            ) ?? 0
+            let row = try Row.fetchOne(
+                db,
+                sql: """
+                SELECT COUNT(se.id) AS set_count,
+                       COALESCE(SUM(se.weight_kg * se.reps), 0.0) AS volume
+                FROM set_entry se
+                JOIN workout_exercise we ON we.id = se.workout_exercise_id
+                WHERE we.workout_id = ?
+                """,
+                arguments: [id]
+            )
+            let setCount: Int = row?["set_count"] ?? 0
+            let volume: Double = row?["volume"] ?? 0
+            return WorkoutSummary(
+                workoutId: workoutId,
+                startedAt: workout.startedAt,
+                endedAt: workout.endedAt,
+                exerciseCount: exerciseCount,
+                setCount: setCount,
+                totalVolumeKg: volume
+            )
+        }
+    }
 }

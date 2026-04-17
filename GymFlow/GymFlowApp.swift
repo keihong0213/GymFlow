@@ -18,7 +18,7 @@ struct GymFlowApp: App {
     @ViewBuilder
     private var rootView: some View {
         if let bootstrap {
-            ContentView()
+            HomeView()
                 .environment(bootstrap)
         } else if let error = bootstrapError {
             VStack(spacing: 8) {
@@ -37,7 +37,17 @@ struct GymFlowApp: App {
 
     private func boot() async {
         do {
-            bootstrap = try AppBootstrap()
+            let instance = try AppBootstrap()
+            #if DEBUG
+            let args = ProcessInfo.processInfo.arguments
+            if args.contains("--reset-workouts") {
+                try? instance.workoutRepo.deleteAll()
+            }
+            if args.contains("--seed-demo") {
+                try? DemoDataSeeder.seed(bootstrap: instance)
+            }
+            #endif
+            bootstrap = instance
         } catch {
             bootstrapError = String(describing: error)
         }
