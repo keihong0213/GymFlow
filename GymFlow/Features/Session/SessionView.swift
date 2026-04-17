@@ -13,98 +13,38 @@ struct SessionView: View {
 
     let unit: WeightUnit
 
-    init(workout: Workout, bootstrap: AppBootstrap, unit: WeightUnit = .kg) {
+    init(
+        workout: Workout,
+        bootstrap: AppBootstrap,
+        unit: WeightUnit = .kg,
+        prefilledPRs: [DetectedPR] = []
+    ) {
         self.unit = unit
-        _coordinator = State(initialValue: SessionCoordinator(
+        let coordinator = SessionCoordinator(
             workout: workout,
             workoutRepo: bootstrap.workoutRepo,
-            exerciseRepo: bootstrap.exerciseRepo
-        ))
+            exerciseRepo: bootstrap.exerciseRepo,
+            prCalculator: bootstrap.prCalculator
+        )
+        coordinator.lastDetectedPRs = prefilledPRs
+        _coordinator = State(initialValue: coordinator)
     }
 
     var body: some View {
         NavigationStack {
-            ZStack(alignment: .top) {
-                List {
-                    ForEach(coordinator.exercises) { section in
-                        SessionExerciseSection(
-                            section: section,
-                            locale: locale,
-                            unit: unit,
-                            localizer: bootstrap.localizer,
-                            onLogSet: { weightKg, reps in
-                                try? coordinator.logSet(
-                                    sectionId: section.workoutExerciseId,
-                                    weightKg: weightKg,
-                                    reps: reps
-                                )
-                            },
-                            onDeleteSet: { id in
-                                try? coordinator.deleteSet(id: id)
-                            }
-                        )
-                    }
-
-                    Section {
-                        Button {
-                            showExercisePicker = true
-                        } label: {
-                            Label("session.add_exercise", systemImage: "plus.circle.fill")
-                                .font(.body.weight(.semibold))
-                        }
-                    }
+            Group {
+                if coordinator.workout.endedAt == nil {
+                    sessionContent
+                } else {
+                    SessionSummaryView(
+                        workout: coordinator.workout,
+                        detectedPRs: coordinator.lastDetectedPRs,
+                        bootstrap: bootstrap,
+                        locale: locale,
+                        unit: unit,
+                        onDone: { dismiss() }
+                    )
                 }
-                .listStyle(.insetGrouped)
-                .scrollDismissesKeyboard(.interactively)
-
-                if let remaining = coordinator.restRemaining {
-                    RestTimerPill(remaining: remaining, onCancel: coordinator.cancelRest)
-                        .padding(.horizontal, 20)
-                        .padding(.top, 8)
-                        .transition(.move(edge: .top).combined(with: .opacity))
-                }
-            }
-            .animation(.easeInOut, value: coordinator.restRemaining)
-            .navigationTitle(elapsedString)
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button("common.cancel") {
-                        showEndConfirm = true
-                    }
-                }
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("session.end") {
-                        showEndConfirm = true
-                    }
-                    .fontWeight(.semibold)
-                }
-            }
-            .sheet(isPresented: $showExercisePicker) {
-                ExercisePickerView { exercise in
-                    try? coordinator.addExercise(exercise)
-                    showExercisePicker = false
-                }
-            }
-            .confirmationDialog(
-                "session.end_confirm",
-                isPresented: $showEndConfirm,
-                titleVisibility: .visible
-            ) {
-                Button("session.end", role: .destructive) {
-                    do {
-                        try coordinator.end()
-                        dismiss()
-                    } catch {
-                        endFailed = true
-                    }
-                }
-                Button("common.cancel", role: .cancel) {}
-            }
-            .alert("session.end_failed", isPresented: $endFailed) {
-                Button("common.ok", role: .cancel) {}
-            } message: {
-                Text("session.end_failed_message")
             }
         }
         .interactiveDismissDisabled(true)
@@ -113,6 +53,90 @@ struct SessionView: View {
             coordinator.startTicking()
         }
         .onDisappear { coordinator.stopTicking() }
+    }
+
+    private var sessionContent: some View {
+        ZStack(alignment: .top) {
+            List {
+                ForEach(coordinator.exercises) { section in
+                    SessionExerciseSection(
+                        section: section,
+                        locale: locale,
+                        unit: unit,
+                        localizer: bootstrap.localizer,
+                        onLogSet: { weightKg, reps in
+                            try? coordinator.logSet(
+                                sectionId: section.workoutExerciseId,
+                                weightKg: weightKg,
+                                reps: reps
+                            )
+                        },
+                        onDeleteSet: { id in
+                            try? coordinator.deleteSet(id: id)
+                        }
+                    )
+                }
+
+                Section {
+                    Button {
+                        showExercisePicker = true
+                    } label: {
+                        Label("session.add_exercise", systemImage: "plus.circle.fill")
+                            .font(.body.weight(.semibold))
+                    }
+                }
+            }
+            .listStyle(.insetGrouped)
+            .scrollDismissesKeyboard(.interactively)
+
+            if let remaining = coordinator.restRemaining {
+                RestTimerPill(remaining: remaining, onCancel: coordinator.cancelRest)
+                    .padding(.horizontal, 20)
+                    .padding(.top, 8)
+                    .transition(.move(edge: .top).combined(with: .opacity))
+            }
+        }
+        .animation(.easeInOut, value: coordinator.restRemaining)
+        .navigationTitle(elapsedString)
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button("common.cancel") {
+                    showEndConfirm = true
+                }
+            }
+            ToolbarItem(placement: .topBarTrailing) {
+                Button("session.end") {
+                    showEndConfirm = true
+                }
+                .fontWeight(.semibold)
+            }
+        }
+        .sheet(isPresented: $showExercisePicker) {
+            ExercisePickerView { exercise in
+                try? coordinator.addExercise(exercise)
+                showExercisePicker = false
+            }
+        }
+        .confirmationDialog(
+            "session.end_confirm",
+            isPresented: $showEndConfirm,
+            titleVisibility: .visible
+        ) {
+            Button("session.end", role: .destructive) {
+                do {
+                    try coordinator.end()
+                } catch {
+                    endFailed = true
+                }
+            }
+            Button("common.cancel", role: .cancel) {}
+        }
+        .alert("session.end_failed", isPresented: $endFailed) {
+            Button("common.ok", role: .cancel) {}
+        } message: {
+            Text("session.end_failed_message")
+        }
     }
 
     private var elapsedString: String {

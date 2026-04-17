@@ -59,6 +59,35 @@ enum DemoDataSeeder {
     }
 
     @discardableResult
+    static func seedFinishedSession(bootstrap: AppBootstrap, now: Date = Date()) throws -> (Workout, [DetectedPR]) {
+        let exercises = bootstrap.exerciseRepo
+        let workouts = bootstrap.workoutRepo
+        let startedAt = now.addingTimeInterval(-47 * 60)
+        let endedAt = now
+
+        let workout = try workouts.start(at: startedAt)
+
+        if let bench = try exercises.find(slug: "bench_press") {
+            let we = try workouts.addExercise(workoutId: workout.id, exerciseId: bench.id)
+            _ = try workouts.addSet(workoutExerciseId: we.id, weightKg: 80, reps: 10)
+            _ = try workouts.addSet(workoutExerciseId: we.id, weightKg: 80, reps: 9)
+            _ = try workouts.addSet(workoutExerciseId: we.id, weightKg: 82.5, reps: 8)
+        }
+        if let squat = try exercises.find(slug: "back_squat") {
+            let we = try workouts.addExercise(workoutId: workout.id, exerciseId: squat.id)
+            _ = try workouts.addSet(workoutExerciseId: we.id, weightKg: 105, reps: 6)
+            _ = try workouts.addSet(workoutExerciseId: we.id, weightKg: 105, reps: 6)
+            _ = try workouts.addSet(workoutExerciseId: we.id, weightKg: 105, reps: 5)
+        }
+
+        try workouts.end(workoutId: workout.id, at: endedAt)
+        var ended = workout
+        ended.endedAt = endedAt
+        let prs = try bootstrap.prCalculator.detectAndSave(workoutId: workout.id)
+        return (ended, prs)
+    }
+
+    @discardableResult
     static func seedActiveSession(bootstrap: AppBootstrap, now: Date = Date()) throws -> Workout {
         let exercises = bootstrap.exerciseRepo
         let workouts = bootstrap.workoutRepo

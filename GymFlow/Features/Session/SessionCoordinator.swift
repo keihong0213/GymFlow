@@ -18,15 +18,23 @@ final class SessionCoordinator {
     var now: Date = Date()
     var restEndsAt: Date?
     var defaultRestSeconds: Int = 90
+    var lastDetectedPRs: [DetectedPR] = []
 
     private let workoutRepo: WorkoutRepository
     private let exerciseRepo: ExerciseRepository
+    private let prCalculator: PRCalculator
     private var timer: Timer?
 
-    init(workout: Workout, workoutRepo: WorkoutRepository, exerciseRepo: ExerciseRepository) {
+    init(
+        workout: Workout,
+        workoutRepo: WorkoutRepository,
+        exerciseRepo: ExerciseRepository,
+        prCalculator: PRCalculator
+    ) {
         self.workout = workout
         self.workoutRepo = workoutRepo
         self.exerciseRepo = exerciseRepo
+        self.prCalculator = prCalculator
     }
 
     var elapsed: TimeInterval {
@@ -111,7 +119,10 @@ final class SessionCoordinator {
     }
 
     func end() throws {
-        try workoutRepo.end(workoutId: workout.id)
+        let endDate = Date()
+        try workoutRepo.end(workoutId: workout.id, at: endDate)
+        workout.endedAt = endDate
+        lastDetectedPRs = (try? prCalculator.detectAndSave(workoutId: workout.id)) ?? []
         stopTicking()
     }
 

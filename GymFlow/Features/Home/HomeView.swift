@@ -7,8 +7,14 @@ struct HomeView: View {
     @Environment(\.locale) private var locale
 
     @State private var model = HomeViewModel()
-    @State private var activeSession: Workout?
+    @State private var activeSession: ActiveSession?
     @State private var showRoutines = false
+
+    struct ActiveSession: Identifiable {
+        let workout: Workout
+        let prefilledPRs: [DetectedPR]
+        var id: UUID { workout.id }
+    }
 
     var body: some View {
         NavigationStack {
@@ -33,7 +39,11 @@ struct HomeView: View {
             let args = ProcessInfo.processInfo.arguments
             if args.contains("--demo-active-session"), activeSession == nil {
                 if let workout = try? DemoDataSeeder.seedActiveSession(bootstrap: bootstrap) {
-                    activeSession = workout
+                    activeSession = ActiveSession(workout: workout, prefilledPRs: [])
+                }
+            } else if args.contains("--demo-summary"), activeSession == nil {
+                if let result = try? DemoDataSeeder.seedFinishedSession(bootstrap: bootstrap) {
+                    activeSession = ActiveSession(workout: result.0, prefilledPRs: result.1)
                 }
             } else if args.contains("--open-session"), activeSession == nil {
                 startWorkout()
@@ -42,12 +52,16 @@ struct HomeView: View {
             }
             #endif
         }
-        .fullScreenCover(item: $activeSession) { workout in
-            SessionView(workout: workout, bootstrap: bootstrap)
-                .environment(bootstrap)
-                .environment(language)
-                .environment(\.locale, language.effectiveLocale)
-                .onDisappear { model.load(bootstrap: bootstrap) }
+        .fullScreenCover(item: $activeSession) { session in
+            SessionView(
+                workout: session.workout,
+                bootstrap: bootstrap,
+                prefilledPRs: session.prefilledPRs
+            )
+            .environment(bootstrap)
+            .environment(language)
+            .environment(\.locale, language.effectiveLocale)
+            .onDisappear { model.load(bootstrap: bootstrap) }
         }
         .sheet(isPresented: $showRoutines) {
             RoutinesView { routine in
@@ -133,7 +147,7 @@ struct HomeView: View {
     private func startWorkout() {
         do {
             let workout = try bootstrap.workoutRepo.start()
-            activeSession = workout
+            activeSession = ActiveSession(workout: workout, prefilledPRs: [])
         } catch {
             // swallow: in practice log / show alert
         }
@@ -142,7 +156,7 @@ struct HomeView: View {
     private func startFromRoutine(_ routine: Routine) {
         do {
             let workout = try bootstrap.workoutRepo.startFromRoutine(routineId: routine.id)
-            activeSession = workout
+            activeSession = ActiveSession(workout: workout, prefilledPRs: [])
         } catch {
             // swallow
         }

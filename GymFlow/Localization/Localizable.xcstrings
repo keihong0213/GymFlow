@@ -1,6 +1,126 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "summary.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Workout Summary" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "サマリー" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "요약" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "训练摘要" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "訓練摘要" } }
+      }
+    },
+    "summary.volume" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Volume" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "総重量" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "총 중량" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "总重量" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "總重量" } }
+      }
+    },
+    "summary.sets" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Sets" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "セット" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "세트" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "组数" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "組數" } }
+      }
+    },
+    "summary.exercises" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Exercises" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "種目" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "운동" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "动作" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "動作" } }
+      }
+    },
+    "summary.new_prs" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "New Personal Records" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "新記録" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "새 개인 기록" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "新纪录" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "新紀錄" } }
+      }
+    },
+    "summary.previous %@" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Previous: %@" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "以前：%@" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "이전: %@" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "之前：%@" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "之前：%@" } }
+      }
+    },
+    "summary.first_time" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "First time!" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "初記録！" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "첫 기록!" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "首次记录！" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "首次紀錄！" } }
+      }
+    },
+    "summary.exercises_section" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Exercises" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "種目別" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "운동별" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "动作详情" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "動作詳情" } }
+      }
+    },
+    "summary.top_set %@ %lld" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Top set: %1$@ × %2$lld" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "ベスト：%1$@ × %2$lld" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "최고: %1$@ × %2$lld" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "最佳：%1$@ × %2$lld" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "最佳：%1$@ × %2$lld" } }
+      }
+    },
+    "summary.sets_count %lld" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "%lld sets" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "%lld セット" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "%lld 세트" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "%lld 组" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "%lld 組" } }
+      }
+    },
+    "summary.pr_type.weight" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Weight PR" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "重量 PR" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "중량 PR" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "重量 PR" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "重量 PR" } }
+      }
+    },
+    "summary.pr_type.e1rm" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "e1RM PR" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "推定 1RM" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "추정 1RM" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "估计 1RM" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "估計 1RM" } }
+      }
+    },
     "app.title" : {
       "extractionState" : "manual",
       "localizations" : {
