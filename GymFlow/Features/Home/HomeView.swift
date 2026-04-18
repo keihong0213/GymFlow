@@ -154,6 +154,7 @@ struct HomeView: View {
     private func startWorkout() {
         do {
             let workout = try bootstrap.workoutRepo.start()
+            bootstrap.analytics.log(AnalyticsEventType.workoutStarted, payload: ["source": "blank"])
             activeSession = ActiveSession(workout: workout, prefilledPRs: [])
         } catch {
             // swallow: in practice log / show alert
@@ -163,6 +164,10 @@ struct HomeView: View {
     private func startFromRoutine(_ routine: Routine) {
         do {
             let workout = try bootstrap.workoutRepo.startFromRoutine(routineId: routine.id)
+            bootstrap.analytics.log(
+                AnalyticsEventType.workoutStarted,
+                payload: ["source": "routine", "routine_id": routine.id.uuidString]
+            )
             activeSession = ActiveSession(workout: workout, prefilledPRs: [])
         } catch {
             // swallow

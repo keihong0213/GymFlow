@@ -22,7 +22,8 @@ struct SessionView: View {
             workoutRepo: bootstrap.workoutRepo,
             exerciseRepo: bootstrap.exerciseRepo,
             prCalculator: bootstrap.prCalculator,
-            defaultRestSeconds: bootstrap.settingsStore.defaultRestSeconds
+            defaultRestSeconds: bootstrap.settingsStore.defaultRestSeconds,
+            analytics: bootstrap.analytics
         )
         coordinator.lastDetectedPRs = prefilledPRs
         _coordinator = State(initialValue: coordinator)

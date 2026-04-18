@@ -144,6 +144,21 @@ public final class AppDatabase: Sendable {
             }
         }
 
+        migrator.registerMigration("v2_analytics_event") { db in
+            try db.create(table: "analytics_event") { t in
+                t.primaryKey("id", .text).notNull()
+                t.column("occurred_at", .datetime).notNull()
+                t.column("event_type", .text).notNull()
+                t.column("payload_json", .text)
+                t.column("synced_at", .datetime)
+            }
+            try db.create(
+                index: "idx_analytics_occurred",
+                on: "analytics_event",
+                columns: ["occurred_at"]
+            )
+        }
+
         return migrator
     }
 }

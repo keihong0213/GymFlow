@@ -9,9 +9,11 @@ final class AppBootstrap {
     let routineRepo: RoutineRepository
     let prRepo: PRRepository
     let settingsRepo: UserSettingsRepository
+    let analyticsRepo: AnalyticsRepository
     let prCalculator: PRCalculator
     let localizer: ExerciseLocalizer
     let settingsStore: SettingsStore
+    let analytics: Analytics
 
     init() throws {
         let fm = FileManager.default
@@ -30,11 +32,13 @@ final class AppBootstrap {
         self.routineRepo = RoutineRepository(database: database)
         self.prRepo = PRRepository(database: database)
         self.settingsRepo = UserSettingsRepository(database: database)
+        self.analyticsRepo = AnalyticsRepository(database: database)
         self.prCalculator = PRCalculator(database: database)
         self.localizer = try ExerciseLocalizer()
         let loaded = try settingsRepo.load()
         let migrated = AppBootstrap.migratingLegacyLanguage(loaded, repository: settingsRepo)
         self.settingsStore = SettingsStore(repository: settingsRepo, initial: migrated)
+        self.analytics = Analytics(repository: analyticsRepo)
     }
 
     private static let legacyLanguageKey = "app.language"

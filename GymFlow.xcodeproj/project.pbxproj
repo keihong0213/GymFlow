@@ -10,6 +10,16 @@
 		33FFB3722F9159330072E229 /* GymFlowCore in Frameworks */ = {isa = PBXBuildFile; productRef = 33FFB3712F9159330072E229 /* GymFlowCore */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		33FFB3A72F91593A0072E229 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 33FFB33D2F9159320072E229 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 33FFB3442F9159320072E229;
+			remoteInfo = GymFlow;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		33FFB3452F9159320072E229 /* GymFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33FFB3A02F91593A0072E229 /* GymFlowUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GymFlowUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -27,16 +37,6 @@
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
-
-/* Begin PBXContainerItemProxy section */
-		33FFB3A72F91593A0072E229 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 33FFB33D2F9159320072E229 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 33FFB3442F9159320072E229;
-			remoteInfo = GymFlow;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		33FFB3422F9159320072E229 /* Frameworks */ = {
@@ -61,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				33FFB3472F9159320072E229 /* GymFlow */,
+				33FFB3A12F91593A0072E229 /* GymFlowUITests */,
 				33FFB3462F9159320072E229 /* Products */,
 			);
 			sourceTree = "<group>";

@@ -23,6 +23,7 @@ final class SessionCoordinator {
     private let workoutRepo: WorkoutRepository
     private let exerciseRepo: ExerciseRepository
     private let prCalculator: PRCalculator
+    private let analytics: Analytics?
     private var timer: Timer?
 
     init(
@@ -30,13 +31,15 @@ final class SessionCoordinator {
         workoutRepo: WorkoutRepository,
         exerciseRepo: ExerciseRepository,
         prCalculator: PRCalculator,
-        defaultRestSeconds: Int = 90
+        defaultRestSeconds: Int = 90,
+        analytics: Analytics? = nil
     ) {
         self.workout = workout
         self.workoutRepo = workoutRepo
         self.exerciseRepo = exerciseRepo
         self.prCalculator = prCalculator
         self.defaultRestSeconds = defaultRestSeconds
+        self.analytics = analytics
     }
 
     var elapsed: TimeInterval {
@@ -108,6 +111,10 @@ final class SessionCoordinator {
             reps: reps
         )
         exercises[idx].sets.append(entry)
+        analytics?.log(AnalyticsEventType.setLogged, payload: [
+            "exercise_id": exercises[idx].exercise.id.uuidString,
+            "reps": "\(reps)",
+        ])
         HapticFeedback.success()
         startRest()
     }
@@ -129,6 +136,18 @@ final class SessionCoordinator {
         try workoutRepo.end(workoutId: workout.id, at: endDate)
         workout.endedAt = endDate
         lastDetectedPRs = (try? prCalculator.detectAndSave(workoutId: workout.id)) ?? []
+        analytics?.log(AnalyticsEventType.workoutEnded, payload: [
+            "workout_id": workout.id.uuidString,
+            "pr_count": "\(lastDetectedPRs.count)",
+            "duration_sec": "\(Int(endDate.timeIntervalSince(workout.startedAt)))",
+        ])
+        for pr in lastDetectedPRs {
+            analytics?.log(AnalyticsEventType.prDetected, payload: [
+                "exercise_id": pr.record.exerciseId.uuidString,
+                "type": pr.record.type.rawValue,
+                "value_kg": String(format: "%.2f", pr.record.valueKg),
+            ])
+        }
         stopTicking()
         if !lastDetectedPRs.isEmpty {
             HapticFeedback.success()

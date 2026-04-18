@@ -1,10 +1,18 @@
 import SwiftUI
+import MetricKit
 import GymFlowCore
 
 @main
 struct GymFlowApp: App {
     @State private var bootstrap: AppBootstrap?
     @State private var bootstrapError: String?
+    private let metricsLogger: MetricsLogger
+
+    init() {
+        let logger = MetricsLogger()
+        MXMetricManager.shared.add(logger)
+        self.metricsLogger = logger
+    }
 
     var body: some Scene {
         WindowGroup {
