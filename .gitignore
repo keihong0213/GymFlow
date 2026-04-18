@@ -20,6 +20,10 @@ DerivedData/
 *.dSYM.zip
 *.dSYM
 
+# xcodebuild default output (when no -derivedDataPath given)
+build/
+GymFlowCore/build/
+
 # Playgrounds
 timeline.xctimeline
 playground.xcworkspace
