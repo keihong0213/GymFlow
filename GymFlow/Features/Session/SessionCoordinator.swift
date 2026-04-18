@@ -17,7 +17,7 @@ final class SessionCoordinator {
     var exercises: [SessionExercise] = []
     var now: Date = Date()
     var restEndsAt: Date?
-    var defaultRestSeconds: Int = 90
+    var defaultRestSeconds: Int
     var lastDetectedPRs: [DetectedPR] = []
 
     private let workoutRepo: WorkoutRepository
@@ -29,12 +29,14 @@ final class SessionCoordinator {
         workout: Workout,
         workoutRepo: WorkoutRepository,
         exerciseRepo: ExerciseRepository,
-        prCalculator: PRCalculator
+        prCalculator: PRCalculator,
+        defaultRestSeconds: Int = 90
     ) {
         self.workout = workout
         self.workoutRepo = workoutRepo
         self.exerciseRepo = exerciseRepo
         self.prCalculator = prCalculator
+        self.defaultRestSeconds = defaultRestSeconds
     }
 
     var elapsed: TimeInterval {

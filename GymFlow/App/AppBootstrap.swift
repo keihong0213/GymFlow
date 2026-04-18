@@ -8,8 +8,10 @@ final class AppBootstrap {
     let workoutRepo: WorkoutRepository
     let routineRepo: RoutineRepository
     let prRepo: PRRepository
+    let settingsRepo: UserSettingsRepository
     let prCalculator: PRCalculator
     let localizer: ExerciseLocalizer
+    let settingsStore: SettingsStore
 
     init() throws {
         let fm = FileManager.default
@@ -27,7 +29,31 @@ final class AppBootstrap {
         self.workoutRepo = WorkoutRepository(database: database)
         self.routineRepo = RoutineRepository(database: database)
         self.prRepo = PRRepository(database: database)
+        self.settingsRepo = UserSettingsRepository(database: database)
         self.prCalculator = PRCalculator(database: database)
         self.localizer = try ExerciseLocalizer()
+        let loaded = try settingsRepo.load()
+        let migrated = AppBootstrap.migratingLegacyLanguage(loaded, repository: settingsRepo)
+        self.settingsStore = SettingsStore(repository: settingsRepo, initial: migrated)
+    }
+
+    private static let legacyLanguageKey = "app.language"
+
+    private static func migratingLegacyLanguage(
+        _ loaded: UserSettings,
+        repository: UserSettingsRepository
+    ) -> UserSettings {
+        let defaults = UserDefaults.standard
+        guard let raw = defaults.string(forKey: legacyLanguageKey) else { return loaded }
+        defaults.removeObject(forKey: legacyLanguageKey)
+        guard loaded.language == .system,
+              let legacy = AppLanguage(rawValue: raw),
+              legacy != .system else {
+            return loaded
+        }
+        var updated = loaded
+        updated.language = legacy
+        try? repository.save(updated)
+        return updated
     }
 }

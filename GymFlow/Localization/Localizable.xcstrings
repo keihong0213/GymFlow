@@ -731,6 +731,76 @@
         "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "單位" } }
       }
     },
+    "settings.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Settings" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "設定" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "설정" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "設定" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "設定" } }
+      }
+    },
+    "settings.rest_default" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Rest Timer Default" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "休憩タイマー" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "휴식 타이머 기본값" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "休息計時器預設" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "休息計時器預設" } }
+      }
+    },
+    "settings.rest_seconds %lld" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "%lld s" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "%lld 秒" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "%lld 초" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "%lld 秒" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "%lld 秒" } }
+      }
+    },
+    "settings.appearance" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Appearance" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "外観" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "화면 모드" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "外观" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "外觀" } }
+      }
+    },
+    "settings.appearance.system" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "System" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "システム" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "시스템" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "跟隨系統" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "跟隨系統" } }
+      }
+    },
+    "settings.appearance.light" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Light" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "ライト" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "라이트" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "淺色" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "淺色" } }
+      }
+    },
+    "settings.appearance.dark" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Dark" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "ダーク" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "다크" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "深色" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "深色" } }
+      }
+    },
     "tabs.home" : {
       "extractionState" : "manual",
       "localizations" : {

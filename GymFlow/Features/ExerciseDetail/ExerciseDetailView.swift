@@ -6,18 +6,14 @@ struct ExerciseDetailView: View {
     let exercise: Exercise
 
     @Environment(AppBootstrap.self) private var bootstrap
+    @Environment(SettingsStore.self) private var settings
     @Environment(\.locale) private var locale
-
-    let unit: WeightUnit
 
     @State private var history: [ExerciseHistoryEntry] = []
     @State private var currentPRs: [PRRecord] = []
     @State private var trend: [PRRecord] = []
 
-    init(exercise: Exercise, unit: WeightUnit = .kg) {
-        self.exercise = exercise
-        self.unit = unit
-    }
+    private var unit: WeightUnit { settings.units }
 
     var body: some View {
         ScrollView {

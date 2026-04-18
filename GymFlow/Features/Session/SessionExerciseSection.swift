@@ -2,10 +2,13 @@ import SwiftUI
 import GymFlowCore
 
 struct SessionExerciseSection: View {
+    @Environment(SettingsStore.self) private var settings
+
     let section: SessionCoordinator.SessionExercise
     let locale: Locale
-    let unit: WeightUnit
     let localizer: ExerciseLocalizer
+
+    private var unit: WeightUnit { settings.units }
     let onLogSet: (Double, Int) -> Void
     let onDeleteSet: (UUID) -> Void
 

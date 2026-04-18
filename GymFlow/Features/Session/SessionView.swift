@@ -3,6 +3,7 @@ import GymFlowCore
 
 struct SessionView: View {
     @Environment(AppBootstrap.self) private var bootstrap
+    @Environment(SettingsStore.self) private var settings
     @Environment(\.locale) private var locale
     @Environment(\.dismiss) private var dismiss
 
@@ -11,20 +12,17 @@ struct SessionView: View {
     @State private var showEndConfirm = false
     @State private var endFailed = false
 
-    let unit: WeightUnit
-
     init(
         workout: Workout,
         bootstrap: AppBootstrap,
-        unit: WeightUnit = .kg,
         prefilledPRs: [DetectedPR] = []
     ) {
-        self.unit = unit
         let coordinator = SessionCoordinator(
             workout: workout,
             workoutRepo: bootstrap.workoutRepo,
             exerciseRepo: bootstrap.exerciseRepo,
-            prCalculator: bootstrap.prCalculator
+            prCalculator: bootstrap.prCalculator,
+            defaultRestSeconds: bootstrap.settingsStore.defaultRestSeconds
         )
         coordinator.lastDetectedPRs = prefilledPRs
         _coordinator = State(initialValue: coordinator)
@@ -41,7 +39,6 @@ struct SessionView: View {
                         detectedPRs: coordinator.lastDetectedPRs,
                         bootstrap: bootstrap,
                         locale: locale,
-                        unit: unit,
                         onDone: { dismiss() }
                     )
                 }
@@ -62,7 +59,6 @@ struct SessionView: View {
                     SessionExerciseSection(
                         section: section,
                         locale: locale,
-                        unit: unit,
                         localizer: bootstrap.localizer,
                         onLogSet: { weightKg, reps in
                             try? coordinator.logSet(

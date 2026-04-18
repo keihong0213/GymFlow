@@ -3,12 +3,13 @@ import GymFlowCore
 
 struct HomeView: View {
     @Environment(AppBootstrap.self) private var bootstrap
-    @Environment(LanguageManager.self) private var language
+    @Environment(SettingsStore.self) private var settings
     @Environment(\.locale) private var locale
 
     @State private var model = HomeViewModel()
     @State private var activeSession: ActiveSession?
     @State private var showRoutines = false
+    @State private var showSettings = false
 
     struct ActiveSession: Identifiable {
         let workout: Workout
@@ -59,8 +60,8 @@ struct HomeView: View {
                 prefilledPRs: session.prefilledPRs
             )
             .environment(bootstrap)
-            .environment(language)
-            .environment(\.locale, language.effectiveLocale)
+            .environment(settings)
+            .environment(\.locale, settings.effectiveLocale)
             .onDisappear { model.load(bootstrap: bootstrap) }
         }
         .sheet(isPresented: $showRoutines) {
@@ -69,8 +70,13 @@ struct HomeView: View {
                 startFromRoutine(routine)
             }
             .environment(bootstrap)
-            .environment(language)
-            .environment(\.locale, language.effectiveLocale)
+            .environment(settings)
+            .environment(\.locale, settings.effectiveLocale)
+        }
+        .sheet(isPresented: $showSettings) {
+            SettingsView()
+                .environment(settings)
+                .environment(\.locale, settings.effectiveLocale)
         }
     }
 
@@ -91,7 +97,7 @@ struct HomeView: View {
     @ViewBuilder
     private var workoutSection: some View {
         if let summary = model.lastSummary {
-            LastWorkoutCard(summary: summary, locale: locale, unit: .kg)
+            LastWorkoutCard(summary: summary, locale: locale)
         } else {
             emptyStateCard
         }
@@ -165,32 +171,18 @@ struct HomeView: View {
     @ToolbarContentBuilder
     private var toolbarContent: some ToolbarContent {
         ToolbarItem(placement: .topBarTrailing) {
-            languageMenu
+            Button {
+                showSettings = true
+            } label: {
+                Image(systemName: "gearshape")
+            }
+            .accessibilityLabel("settings.title")
         }
         #if DEBUG
         ToolbarItem(placement: .topBarLeading) {
             debugMenu
         }
         #endif
-    }
-
-    private var languageMenu: some View {
-        @Bindable var languageBinding = language
-        return Menu {
-            Picker(selection: $languageBinding.selected) {
-                Text("language.system").tag(AppLanguage.system)
-                Divider()
-                Text("language.zh-Hant").tag(AppLanguage.zhHant)
-                Text("language.zh-Hans").tag(AppLanguage.zhHans)
-                Text("language.en").tag(AppLanguage.en)
-                Text("language.ja").tag(AppLanguage.ja)
-                Text("language.ko").tag(AppLanguage.ko)
-            } label: {
-                Text("settings.language")
-            }
-        } label: {
-            Image(systemName: "globe")
-        }
     }
 
     #if DEBUG

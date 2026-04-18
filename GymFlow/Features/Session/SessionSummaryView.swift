@@ -2,12 +2,15 @@ import SwiftUI
 import GymFlowCore
 
 struct SessionSummaryView: View {
+    @Environment(SettingsStore.self) private var settings
+
     let workout: Workout
     let detectedPRs: [DetectedPR]
     let bootstrap: AppBootstrap
     let locale: Locale
-    let unit: WeightUnit
     let onDone: () -> Void
+
+    private var unit: WeightUnit { settings.units }
 
     @State private var exercises: [ExerciseBreakdown] = []
     @State private var summary: WorkoutSummary?
@@ -148,7 +151,7 @@ struct SessionSummaryView: View {
             VStack(spacing: 0) {
                 ForEach(exercises) { row in
                     NavigationLink {
-                        ExerciseDetailView(exercise: row.exercise, unit: unit)
+                        ExerciseDetailView(exercise: row.exercise)
                             .environment(bootstrap)
                     } label: {
                         exerciseRow(row)

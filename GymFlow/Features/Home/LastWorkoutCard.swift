@@ -2,9 +2,10 @@ import SwiftUI
 import GymFlowCore
 
 struct LastWorkoutCard: View {
+    @Environment(SettingsStore.self) private var settings
+
     let summary: WorkoutSummary
     let locale: Locale
-    let unit: WeightUnit
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -53,7 +54,7 @@ struct LastWorkoutCard: View {
     }
 
     private var volumeString: String {
-        let formatter = WeightFormatter(unit: unit, locale: locale)
+        let formatter = WeightFormatter(unit: settings.units, locale: locale)
         let full = formatter.format(kg: summary.totalVolumeKg)
         return full
     }
