@@ -101,6 +101,7 @@ private struct RoutineRow: View {
         HStack(spacing: 12) {
             Image(systemName: routine.isBuiltIn ? "sparkles" : "list.bullet.rectangle")
                 .foregroundStyle(routine.isBuiltIn ? Color.accentColor : .secondary)
+                .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 2) {
                 routineTitleText(routine)
                     .font(.body.weight(.medium))

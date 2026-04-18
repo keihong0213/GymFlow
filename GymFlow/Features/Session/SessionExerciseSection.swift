@@ -54,7 +54,7 @@ struct SessionExerciseSection: View {
             Text("\(set.setNumber)")
                 .font(.subheadline.weight(.semibold))
                 .monospacedDigit()
-                .frame(width: 24, alignment: .leading)
+                .frame(minWidth: 24, alignment: .leading)
                 .foregroundStyle(.secondary)
             Text(weightString(for: set.weightKg))
                 .font(.body.weight(.medium))
@@ -79,7 +79,7 @@ struct SessionExerciseSection: View {
             Text("\(nextSetNumber)")
                 .font(.subheadline.weight(.semibold))
                 .monospacedDigit()
-                .frame(width: 24, alignment: .leading)
+                .frame(minWidth: 24, alignment: .leading)
                 .foregroundStyle(.secondary)
 
             HStack(spacing: 4) {
@@ -124,6 +124,7 @@ struct SessionExerciseSection: View {
             .buttonStyle(.borderless)
             .tint(.accentColor)
             .disabled(repsInput <= 0)
+            .accessibilityLabel("a11y.log_set")
         }
         .padding(.vertical, 4)
     }

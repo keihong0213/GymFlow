@@ -801,6 +801,146 @@
         "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "深色" } }
       }
     },
+    "a11y.log_set" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Log this set" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "このセットを記録" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "이 세트 기록" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "記錄這一組" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "記錄這一組" } }
+      }
+    },
+    "a11y.cancel_rest" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Cancel rest" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "休憩をキャンセル" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "휴식 취소" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "取消休息" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "取消休息" } }
+      }
+    },
+    "a11y.rest_remaining" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Rest remaining" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "残り休憩時間" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "남은 휴식 시간" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "剩餘休息時間" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "剩餘休息時間" } }
+      }
+    },
+    "a11y.seconds %lld" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "%lld seconds" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "%lld 秒" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "%lld 초" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "%lld 秒" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "%lld 秒" } }
+      }
+    },
+    "a11y.debug_menu" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Debug tools" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "デバッグツール" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "디버그 도구" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "調試工具" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "除錯工具" } }
+      }
+    },
+    "a11y.day %@" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "%@" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "%@" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "%@" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "%@" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "%@" } }
+      }
+    },
+    "a11y.day_today %@" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Today, %@" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "今日、%@" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "오늘, %@" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "今天,%@" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "今天,%@" } }
+      }
+    },
+    "a11y.day_trained" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "trained" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "トレーニング済み" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "훈련함" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "有訓練" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "有訓練" } }
+      }
+    },
+    "a11y.day_rest" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "no workout" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "休養日" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "휴식일" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "休息日" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "休息日" } }
+      }
+    },
+    "onboarding.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Welcome to GymFlow" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "GymFlow へようこそ" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "GymFlow에 오신 것을 환영합니다" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "歡迎使用 GymFlow" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "歡迎使用 GymFlow" } }
+      }
+    },
+    "onboarding.bullet.1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Log sets in seconds — weight, reps, done." } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "重量とレップ数をすばやく記録。" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "무게와 횟수를 빠르게 기록하세요." } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "秒速記錄重量與次數。" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "秒速記錄重量與次數。" } }
+      }
+    },
+    "onboarding.bullet.2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Built-in rest timer — never miss a beat." } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "休憩タイマーが自動で稼働。" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "자동 휴식 타이머 내장." } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "內建休息計時器,節奏不亂。" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "內建休息計時器,節奏不亂。" } }
+      }
+    },
+    "onboarding.bullet.3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "PR detection — celebrates every new best." } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "新記録を自動で検出。" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "새 기록을 자동으로 감지." } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "自動偵測每一次新紀錄。" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "自動偵測每一次新紀錄。" } }
+      }
+    },
+    "onboarding.start" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Get started" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "はじめる" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "시작하기" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "開始使用" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "開始使用" } }
+      }
+    },
     "tabs.home" : {
       "extractionState" : "manual",
       "localizations" : {

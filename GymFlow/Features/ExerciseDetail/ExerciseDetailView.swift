@@ -40,6 +40,7 @@ struct ExerciseDetailView: View {
             Image(systemName: categoryIcon)
                 .font(.title2)
                 .foregroundStyle(.secondary)
+                .accessibilityHidden(true)
             Text(categoryTitle(exercise.category))
                 .font(.subheadline)
                 .foregroundStyle(.secondary)

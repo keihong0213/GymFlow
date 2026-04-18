@@ -73,9 +73,11 @@ final class SessionCoordinator {
         now = Date()
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { [weak self] _ in
             Task { @MainActor [weak self] in
-                self?.now = Date()
-                if let restEndsAt = self?.restEndsAt, restEndsAt < Date() {
-                    self?.restEndsAt = nil
+                guard let self else { return }
+                self.now = Date()
+                if let restEndsAt = self.restEndsAt, restEndsAt < Date() {
+                    self.restEndsAt = nil
+                    HapticFeedback.success()
                 }
             }
         }
@@ -95,6 +97,7 @@ final class SessionCoordinator {
             sets: [],
             previousSets: previous
         ))
+        HapticFeedback.impact(.light)
     }
 
     func logSet(sectionId: UUID, weightKg: Double, reps: Int) throws {
@@ -105,7 +108,7 @@ final class SessionCoordinator {
             reps: reps
         )
         exercises[idx].sets.append(entry)
-        haptic(.success)
+        HapticFeedback.success()
         startRest()
     }
 
@@ -114,6 +117,7 @@ final class SessionCoordinator {
         for i in exercises.indices {
             exercises[i].sets.removeAll { $0.id == id }
         }
+        HapticFeedback.impact(.medium)
     }
 
     func cancelRest() {
@@ -126,14 +130,12 @@ final class SessionCoordinator {
         workout.endedAt = endDate
         lastDetectedPRs = (try? prCalculator.detectAndSave(workoutId: workout.id)) ?? []
         stopTicking()
+        if !lastDetectedPRs.isEmpty {
+            HapticFeedback.success()
+        }
     }
 
     private func startRest() {
         restEndsAt = Date().addingTimeInterval(TimeInterval(defaultRestSeconds))
-    }
-
-    private func haptic(_ type: UINotificationFeedbackGenerator.FeedbackType) {
-        let gen = UINotificationFeedbackGenerator()
-        gen.notificationOccurred(type)
     }
 }

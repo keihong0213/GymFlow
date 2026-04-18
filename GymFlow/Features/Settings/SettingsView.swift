@@ -33,6 +33,7 @@ struct SettingsView: View {
                         Text("settings.rest_seconds \(store.defaultRestSeconds)")
                             .monospacedDigit()
                     }
+                    .accessibilityValue(Text("a11y.seconds \(store.defaultRestSeconds)"))
                 }
 
                 Section("settings.appearance") {

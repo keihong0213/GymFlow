@@ -45,6 +45,7 @@ struct SessionSummaryView: View {
             ToolbarItem(placement: .topBarTrailing) {
                 Button("common.done") { onDone() }
                     .fontWeight(.semibold)
+                    .accessibilityIdentifier("summary.done")
             }
         }
         .task { load() }
@@ -53,7 +54,7 @@ struct SessionSummaryView: View {
     private var headerSection: some View {
         VStack(spacing: 6) {
             Text(durationString)
-                .font(.system(size: 48, weight: .semibold, design: .rounded))
+                .font(.system(.largeTitle, design: .rounded).weight(.semibold))
                 .monospacedDigit()
             Text(workout.startedAt, style: .date)
                 .foregroundStyle(.secondary)
@@ -95,6 +96,7 @@ struct SessionSummaryView: View {
             HStack(spacing: 6) {
                 Image(systemName: "trophy.fill")
                     .foregroundStyle(Color.yellow)
+                    .accessibilityHidden(true)
                 Text("summary.new_prs")
                     .font(.subheadline.weight(.semibold))
             }

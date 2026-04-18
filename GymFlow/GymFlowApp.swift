@@ -47,13 +47,36 @@ struct GymFlowApp: App {
 
 private struct RootView: View {
     let bootstrap: AppBootstrap
+    @AppStorage("onboarding.seen") private var hasSeenOnboarding = false
 
     var body: some View {
         @Bindable var store = bootstrap.settingsStore
-        return HomeView()
-            .environment(bootstrap)
-            .environment(store)
-            .environment(\.locale, store.effectiveLocale)
-            .preferredColorScheme(store.preferredColorScheme)
+        return Group {
+            if hasSeenOnboarding || RootView.shouldBypassOnboarding {
+                HomeView()
+                    .environment(bootstrap)
+                    .environment(store)
+            } else {
+                OnboardingView { hasSeenOnboarding = true }
+            }
+        }
+        .environment(\.locale, store.effectiveLocale)
+        .preferredColorScheme(store.preferredColorScheme)
+    }
+
+    private static var shouldBypassOnboarding: Bool {
+        #if DEBUG
+        let bypassArgs: Set<String> = [
+            "--open-session",
+            "--open-routines",
+            "--demo-summary",
+            "--demo-active-session",
+            "--seed-demo",
+            "--skip-onboarding",
+        ]
+        return !Set(ProcessInfo.processInfo.arguments).isDisjoint(with: bypassArgs)
+        #else
+        return false
+        #endif
     }
 }

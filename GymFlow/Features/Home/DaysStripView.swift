@@ -36,6 +36,22 @@ struct DaysStripView: View {
                     .foregroundStyle(isActive ? Color.white : Color.primary)
             }
         }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(accessibilityText(for: day, isActive: isActive, isToday: isToday))
+    }
+
+    private func accessibilityText(for day: Date, isActive: Bool, isToday: Bool) -> Text {
+        let dateString = formattedFullDate(for: day)
+        let todayPrefix: LocalizedStringKey = isToday ? "a11y.day_today \(dateString)" : "a11y.day \(dateString)"
+        let status: LocalizedStringKey = isActive ? "a11y.day_trained" : "a11y.day_rest"
+        return Text(todayPrefix) + Text(verbatim: " ") + Text(status)
+    }
+
+    private func formattedFullDate(for date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.locale = locale
+        formatter.setLocalizedDateFormatFromTemplate("EEEEd")
+        return formatter.string(from: date)
     }
 
     private func weekdayLabel(for date: Date) -> String {

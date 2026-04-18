@@ -106,6 +106,7 @@ struct SessionView: View {
                     showEndConfirm = true
                 }
                 .fontWeight(.semibold)
+                .accessibilityIdentifier("session.end")
             }
         }
         .sheet(isPresented: $showExercisePicker) {
@@ -126,6 +127,7 @@ struct SessionView: View {
                     endFailed = true
                 }
             }
+            .accessibilityIdentifier("session.end_confirm")
             Button("common.cancel", role: .cancel) {}
         }
         .alert("session.end_failed", isPresented: $endFailed) {

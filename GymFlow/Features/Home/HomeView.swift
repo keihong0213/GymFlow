@@ -135,6 +135,7 @@ struct HomeView: View {
         }
         .buttonStyle(.borderedProminent)
         .tint(.accentColor)
+        .accessibilityIdentifier("home.start_workout")
     }
 
     private var templatesButton: some View {
@@ -181,6 +182,7 @@ struct HomeView: View {
         #if DEBUG
         ToolbarItem(placement: .topBarLeading) {
             debugMenu
+                .accessibilityLabel("a11y.debug_menu")
         }
         #endif
     }

@@ -7,8 +7,11 @@ struct RestTimerPill: View {
     var body: some View {
         HStack(spacing: 10) {
             Image(systemName: "timer")
+                .accessibilityHidden(true)
             Text(timeString)
                 .font(.body.weight(.semibold).monospacedDigit())
+                .accessibilityLabel("a11y.rest_remaining")
+                .accessibilityValue(Text("a11y.seconds \(Int(remaining.rounded(.up)))"))
             Spacer()
             Button(role: .cancel) {
                 onCancel()
@@ -17,6 +20,7 @@ struct RestTimerPill: View {
                     .foregroundStyle(.secondary)
             }
             .buttonStyle(.borderless)
+            .accessibilityLabel("a11y.cancel_rest")
         }
         .padding(.horizontal, 14)
         .padding(.vertical, 10)
