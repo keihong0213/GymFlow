@@ -75,7 +75,9 @@ public struct WorkoutRepository: Sendable {
         reps: Int,
         isWarmup: Bool = false,
         rpe: Double? = nil,
-        at date: Date = Date()
+        at date: Date = Date(),
+        durationSec: Int? = nil,
+        distanceMeters: Double? = nil
     ) throws -> SetEntry {
         try database.dbWriter.write { db in
             let nextSet = try Int.fetchOne(
@@ -90,7 +92,9 @@ public struct WorkoutRepository: Sendable {
                 reps: reps,
                 isWarmup: isWarmup,
                 rpe: rpe,
-                completedAt: date
+                completedAt: date,
+                durationSec: durationSec,
+                distanceMeters: distanceMeters
             )
             try entry.insert(db)
             return entry
@@ -158,6 +162,13 @@ public struct WorkoutRepository: Sendable {
     }
 
     @discardableResult
+    public func deleteWorkout(id: UUID) throws -> Bool {
+        try database.dbWriter.write { db in
+            try Workout.deleteOne(db, key: id.uuidString)
+        }
+    }
+
+    @discardableResult
     public func deleteSet(id: UUID) throws -> Bool {
         try database.dbWriter.write { db in
             try SetEntry.deleteOne(db, key: id.uuidString)
@@ -169,6 +180,20 @@ public struct WorkoutRepository: Sendable {
             if var set = try SetEntry.fetchOne(db, key: id.uuidString) {
                 set.weightKg = weightKg
                 set.reps = reps
+                set.durationSec = nil
+                set.distanceMeters = nil
+                try set.update(db)
+            }
+        }
+    }
+
+    public func updateCardioSet(id: UUID, durationSec: Int, distanceMeters: Double?) throws {
+        try database.dbWriter.write { db in
+            if var set = try SetEntry.fetchOne(db, key: id.uuidString) {
+                set.weightKg = 0
+                set.reps = 0
+                set.durationSec = durationSec
+                set.distanceMeters = distanceMeters
                 try set.update(db)
             }
         }
@@ -186,6 +211,42 @@ public struct WorkoutRepository: Sendable {
                 .filter(Column("started_at") >= date)
                 .order(Column("started_at"))
                 .fetchAll(db)
+        }
+    }
+
+    public func completedWorkouts(limit: Int? = nil) throws -> [Workout] {
+        try database.reader.read { db in
+            var request = Workout
+                .filter(Column("ended_at") != nil)
+                .order(Column("started_at").desc)
+            if let limit {
+                request = request.limit(limit)
+            }
+            return try request.fetchAll(db)
+        }
+    }
+
+    public func completedWorkouts(in interval: DateInterval) throws -> [Workout] {
+        try database.reader.read { db in
+            try Workout
+                .filter(Column("ended_at") != nil)
+                .filter(Column("started_at") >= interval.start)
+                .filter(Column("started_at") < interval.end)
+                .order(Column("started_at"))
+                .fetchAll(db)
+        }
+    }
+
+    public func completedWorkout(on day: Date, calendar: Calendar = .current) throws -> Workout? {
+        let start = calendar.startOfDay(for: day)
+        guard let end = calendar.date(byAdding: .day, value: 1, to: start) else { return nil }
+        return try database.reader.read { db in
+            try Workout
+                .filter(Column("ended_at") != nil)
+                .filter(Column("started_at") >= start)
+                .filter(Column("started_at") < end)
+                .order(Column("started_at").desc)
+                .fetchOne(db)
         }
     }
 

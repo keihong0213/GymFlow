@@ -4,6 +4,7 @@ struct DaysStripView: View {
     let days: [Date]
     let activeDays: Set<Date>
     let locale: Locale
+    var onTapDay: ((Date) -> Void)? = nil
 
     var body: some View {
         HStack(spacing: 0) {
@@ -18,6 +19,25 @@ struct DaysStripView: View {
     private func dayCell(_ day: Date) -> some View {
         let isActive = activeDays.contains(day)
         let isToday = Calendar.current.isDateInToday(day)
+        Group {
+            if let onTap = onTapDay, isActive {
+                Button {
+                    onTap(day)
+                } label: {
+                    dayCellContent(day: day, isActive: isActive, isToday: isToday)
+                }
+                .buttonStyle(.plain)
+            } else {
+                dayCellContent(day: day, isActive: isActive, isToday: isToday)
+            }
+        }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(accessibilityText(for: day, isActive: isActive, isToday: isToday))
+        .accessibilityAddTraits(onTapDay != nil && isActive ? .isButton : [])
+    }
+
+    @ViewBuilder
+    private func dayCellContent(day: Date, isActive: Bool, isToday: Bool) -> some View {
         VStack(spacing: 6) {
             Text(weekdayLabel(for: day))
                 .font(.caption2)
@@ -36,8 +56,7 @@ struct DaysStripView: View {
                     .foregroundStyle(isActive ? Color.white : Color.primary)
             }
         }
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel(accessibilityText(for: day, isActive: isActive, isToday: isToday))
+        .contentShape(Rectangle())
     }
 
     private func accessibilityText(for day: Date, isActive: Bool, isToday: Bool) -> Text {

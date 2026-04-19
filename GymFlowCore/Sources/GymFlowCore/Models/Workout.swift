@@ -1,7 +1,7 @@
 import Foundation
 import GRDB
 
-public struct Workout: Identifiable, Codable, Equatable, Sendable, FetchableRecord, PersistableRecord {
+public struct Workout: Identifiable, Codable, Equatable, Hashable, Sendable, FetchableRecord, PersistableRecord {
     public var id: UUID
     public var startedAt: Date
     public var endedAt: Date?
@@ -76,6 +76,8 @@ public struct SetEntry: Identifiable, Codable, Equatable, Sendable, FetchableRec
     public var isWarmup: Bool
     public var rpe: Double?
     public var completedAt: Date
+    public var durationSec: Int?
+    public var distanceMeters: Double?
 
     public init(
         id: UUID = UUID(),
@@ -85,7 +87,9 @@ public struct SetEntry: Identifiable, Codable, Equatable, Sendable, FetchableRec
         reps: Int,
         isWarmup: Bool = false,
         rpe: Double? = nil,
-        completedAt: Date = Date()
+        completedAt: Date = Date(),
+        durationSec: Int? = nil,
+        distanceMeters: Double? = nil
     ) {
         self.id = id
         self.workoutExerciseId = workoutExerciseId
@@ -95,6 +99,8 @@ public struct SetEntry: Identifiable, Codable, Equatable, Sendable, FetchableRec
         self.isWarmup = isWarmup
         self.rpe = rpe
         self.completedAt = completedAt
+        self.durationSec = durationSec
+        self.distanceMeters = distanceMeters
     }
 
     public var volumeKg: Double { weightKg * Double(reps) }
@@ -117,5 +123,7 @@ public struct SetEntry: Identifiable, Codable, Equatable, Sendable, FetchableRec
         case isWarmup = "is_warmup"
         case rpe
         case completedAt = "completed_at"
+        case durationSec = "duration_sec"
+        case distanceMeters = "distance_meters"
     }
 }

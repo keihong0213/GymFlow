@@ -180,9 +180,20 @@ struct SessionSummaryView: View {
                     .font(.subheadline.weight(.medium))
                     .foregroundStyle(.primary)
                 if let top = row.topSet {
-                    Text("summary.top_set \(weightString(for: top.weightKg)) \(top.reps)")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
+                    switch row.exercise.category {
+                    case .cardio:
+                        Text(cardioSummaryString(for: top))
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    case .bodyweight:
+                        Text("summary.top_reps \(top.reps)")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    default:
+                        Text("summary.top_set \(weightString(for: top.weightKg)) \(top.reps)")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
                 }
             }
             Spacer()
@@ -220,6 +231,33 @@ struct SessionSummaryView: View {
         nf.maximumFractionDigits = 0
         let num = nf.string(from: NSNumber(value: value)) ?? "\(Int(value))"
         return "\(num) \(unit.rawValue)"
+    }
+
+    private func cardioSummaryString(for set: SetEntry) -> String {
+        var parts: [String] = []
+        parts.append(durationString(for: set.durationSec ?? 0))
+        if let meters = set.distanceMeters, meters > 0 {
+            parts.append(distanceString(meters: meters))
+        }
+        return parts.joined(separator: " · ")
+    }
+
+    private func durationString(for sec: Int) -> String {
+        let h = sec / 3600
+        let m = (sec % 3600) / 60
+        let s = sec % 60
+        if h > 0 { return String(format: "%d:%02d:%02d", h, m, s) }
+        return String(format: "%d:%02d", m, s)
+    }
+
+    private func distanceString(meters: Double) -> String {
+        let km = meters / 1000
+        let nf = NumberFormatter()
+        nf.locale = locale
+        nf.minimumFractionDigits = 0
+        nf.maximumFractionDigits = 2
+        let num = nf.string(from: NSNumber(value: km)) ?? "\(km)"
+        return "\(num) km"
     }
 
     private func weightString(for kg: Double) -> String {
@@ -262,7 +300,12 @@ struct SessionSummaryView: View {
             names[ex.id] = bootstrap.localizer.displayName(for: ex, locale: locale)
             let sets = (try? bootstrap.workoutRepo.sets(for: row.id)) ?? []
             let working = sets.filter { !$0.isWarmup }
-            let top = working.max(by: { $0.estimatedOneRepMaxKg < $1.estimatedOneRepMaxKg })
+            let top: SetEntry?
+            if ex.category == .cardio {
+                top = working.max(by: { ($0.durationSec ?? 0) < ($1.durationSec ?? 0) })
+            } else {
+                top = working.max(by: { $0.estimatedOneRepMaxKg < $1.estimatedOneRepMaxKg })
+            }
             let volume = working.reduce(0.0) { $0 + $1.volumeKg }
             built.append(ExerciseBreakdown(
                 id: row.id,

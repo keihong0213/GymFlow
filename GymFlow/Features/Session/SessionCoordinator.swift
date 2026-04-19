@@ -119,12 +119,56 @@ final class SessionCoordinator {
         startRest()
     }
 
+    func logCardioSet(sectionId: UUID, durationSec: Int, distanceMeters: Double?) throws {
+        guard let idx = exercises.firstIndex(where: { $0.workoutExerciseId == sectionId }) else { return }
+        let entry = try workoutRepo.addSet(
+            workoutExerciseId: sectionId,
+            weightKg: 0,
+            reps: 0,
+            durationSec: durationSec,
+            distanceMeters: distanceMeters
+        )
+        exercises[idx].sets.append(entry)
+        analytics?.log(AnalyticsEventType.setLogged, payload: [
+            "exercise_id": exercises[idx].exercise.id.uuidString,
+            "duration_sec": "\(durationSec)",
+        ])
+        HapticFeedback.success()
+        startRest()
+    }
+
     func deleteSet(id: UUID) throws {
         try workoutRepo.deleteSet(id: id)
         for i in exercises.indices {
             exercises[i].sets.removeAll { $0.id == id }
         }
         HapticFeedback.impact(.medium)
+    }
+
+    func editSet(id: UUID, weightKg: Double, reps: Int) throws {
+        try workoutRepo.updateSet(id: id, weightKg: weightKg, reps: reps)
+        for i in exercises.indices {
+            if let j = exercises[i].sets.firstIndex(where: { $0.id == id }) {
+                exercises[i].sets[j].weightKg = weightKg
+                exercises[i].sets[j].reps = reps
+                exercises[i].sets[j].durationSec = nil
+                exercises[i].sets[j].distanceMeters = nil
+            }
+        }
+        HapticFeedback.impact(.light)
+    }
+
+    func editCardioSet(id: UUID, durationSec: Int, distanceMeters: Double?) throws {
+        try workoutRepo.updateCardioSet(id: id, durationSec: durationSec, distanceMeters: distanceMeters)
+        for i in exercises.indices {
+            if let j = exercises[i].sets.firstIndex(where: { $0.id == id }) {
+                exercises[i].sets[j].weightKg = 0
+                exercises[i].sets[j].reps = 0
+                exercises[i].sets[j].durationSec = durationSec
+                exercises[i].sets[j].distanceMeters = distanceMeters
+            }
+        }
+        HapticFeedback.impact(.light)
     }
 
     func cancelRest() {

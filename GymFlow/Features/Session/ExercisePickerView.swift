@@ -11,10 +11,14 @@ struct ExercisePickerView: View {
     @State private var search = ""
     @State private var exercises: [Exercise] = []
 
+    private let categoryOrder: [ExerciseCategory] = [
+        .bodyweight, .barbell, .dumbbell, .machine, .cardio, .other
+    ]
+
     var body: some View {
         NavigationStack {
             List {
-                ForEach(ExerciseCategory.allCases, id: \.self) { category in
+                ForEach(categoryOrder, id: \.self) { category in
                     let rows = filtered.filter { $0.category == category }
                     if !rows.isEmpty {
                         Section(categoryTitle(category)) {

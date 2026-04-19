@@ -159,6 +159,13 @@ public final class AppDatabase: Sendable {
             )
         }
 
+        migrator.registerMigration("v3_cardio_fields") { db in
+            try db.alter(table: "set_entry") { t in
+                t.add(column: "duration_sec", .integer)
+                t.add(column: "distance_meters", .double)
+            }
+        }
+
         return migrator
     }
 }

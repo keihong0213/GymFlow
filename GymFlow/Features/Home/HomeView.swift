@@ -10,6 +10,8 @@ struct HomeView: View {
     @State private var activeSession: ActiveSession?
     @State private var showRoutines = false
     @State private var showSettings = false
+    @State private var pastWorkout: Workout?
+    @State private var showHistory = false
 
     struct ActiveSession: Identifiable {
         let workout: Workout
@@ -33,6 +35,18 @@ struct HomeView: View {
             }
             .navigationTitle("app.title")
             .toolbar { toolbarContent }
+            .navigationDestination(item: $pastWorkout) { workout in
+                PastWorkoutDetailView(workout: workout)
+                    .environment(bootstrap)
+                    .environment(settings)
+                    .environment(\.locale, settings.effectiveLocale)
+            }
+            .navigationDestination(isPresented: $showHistory) {
+                WorkoutHistoryView()
+                    .environment(bootstrap)
+                    .environment(settings)
+                    .environment(\.locale, settings.effectiveLocale)
+            }
         }
         .task {
             model.load(bootstrap: bootstrap)
@@ -89,7 +103,8 @@ struct HomeView: View {
             DaysStripView(
                 days: model.last7Days(),
                 activeDays: model.activeDays,
-                locale: locale
+                locale: locale,
+                onTapDay: openWorkout(on:)
             )
         }
     }
@@ -151,6 +166,12 @@ struct HomeView: View {
         .tint(.accentColor)
     }
 
+    private func openWorkout(on day: Date) {
+        if let workout = try? bootstrap.workoutRepo.completedWorkout(on: day) {
+            pastWorkout = workout
+        }
+    }
+
     private func startWorkout() {
         do {
             let workout = try bootstrap.workoutRepo.start()
@@ -183,6 +204,15 @@ struct HomeView: View {
                 Image(systemName: "gearshape")
             }
             .accessibilityLabel("settings.title")
+        }
+        ToolbarItem(placement: .topBarTrailing) {
+            Button {
+                showHistory = true
+            } label: {
+                Image(systemName: "clock.arrow.circlepath")
+            }
+            .accessibilityLabel("history.title")
+            .accessibilityIdentifier("home.history")
         }
         #if DEBUG
         ToolbarItem(placement: .topBarLeading) {

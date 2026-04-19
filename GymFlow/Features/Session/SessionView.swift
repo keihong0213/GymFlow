@@ -11,6 +11,13 @@ struct SessionView: View {
     @State private var showExercisePicker = false
     @State private var showEndConfirm = false
     @State private var endFailed = false
+    @State private var editing: EditingSet?
+
+    struct EditingSet: Identifiable {
+        let entry: SetEntry
+        let exercise: Exercise
+        var id: UUID { entry.id }
+    }
 
     init(
         workout: Workout,
@@ -54,42 +61,53 @@ struct SessionView: View {
     }
 
     private var sessionContent: some View {
-        ZStack(alignment: .top) {
-            List {
-                ForEach(coordinator.exercises) { section in
-                    SessionExerciseSection(
-                        section: section,
-                        locale: locale,
-                        localizer: bootstrap.localizer,
-                        onLogSet: { weightKg, reps in
-                            try? coordinator.logSet(
-                                sectionId: section.workoutExerciseId,
-                                weightKg: weightKg,
-                                reps: reps
-                            )
-                        },
-                        onDeleteSet: { id in
-                            try? coordinator.deleteSet(id: id)
-                        }
-                    )
-                }
-
-                Section {
-                    Button {
-                        showExercisePicker = true
-                    } label: {
-                        Label("session.add_exercise", systemImage: "plus.circle.fill")
-                            .font(.body.weight(.semibold))
+        List {
+            ForEach(coordinator.exercises) { section in
+                SessionExerciseSection(
+                    section: section,
+                    locale: locale,
+                    localizer: bootstrap.localizer,
+                    onLogSet: { weightKg, reps in
+                        try? coordinator.logSet(
+                            sectionId: section.workoutExerciseId,
+                            weightKg: weightKg,
+                            reps: reps
+                        )
+                    },
+                    onLogCardioSet: { duration, distance in
+                        try? coordinator.logCardioSet(
+                            sectionId: section.workoutExerciseId,
+                            durationSec: duration,
+                            distanceMeters: distance
+                        )
+                    },
+                    onDeleteSet: { id in
+                        try? coordinator.deleteSet(id: id)
+                    },
+                    onEditSet: { set in
+                        editing = EditingSet(entry: set, exercise: section.exercise)
                     }
+                )
+            }
+
+            Section {
+                Button {
+                    showExercisePicker = true
+                } label: {
+                    Label("session.add_exercise", systemImage: "plus.circle.fill")
+                        .font(.body.weight(.semibold))
                 }
             }
-            .listStyle(.insetGrouped)
-            .scrollDismissesKeyboard(.interactively)
-
+        }
+        .listStyle(.insetGrouped)
+        .scrollDismissesKeyboard(.interactively)
+        .safeAreaInset(edge: .top, spacing: 0) {
             if let remaining = coordinator.restRemaining {
                 RestTimerPill(remaining: remaining, onCancel: coordinator.cancelRest)
                     .padding(.horizontal, 20)
-                    .padding(.top, 8)
+                    .padding(.vertical, 8)
+                    .frame(maxWidth: .infinity)
+                    .background(.bar)
                     .transition(.move(edge: .top).combined(with: .opacity))
             }
         }
@@ -115,6 +133,25 @@ struct SessionView: View {
                 try? coordinator.addExercise(exercise)
                 showExercisePicker = false
             }
+        }
+        .sheet(item: $editing) { item in
+            EditSetSheet(
+                set: item.entry,
+                category: item.exercise.category,
+                onSaveStrength: { kg, reps in
+                    try? coordinator.editSet(id: item.entry.id, weightKg: kg, reps: reps)
+                },
+                onSaveBodyweight: { reps in
+                    try? coordinator.editSet(id: item.entry.id, weightKg: 0, reps: reps)
+                },
+                onSaveCardio: { duration, distance in
+                    try? coordinator.editCardioSet(id: item.entry.id, durationSec: duration, distanceMeters: distance)
+                },
+                onDelete: {
+                    try? coordinator.deleteSet(id: item.entry.id)
+                }
+            )
+            .environment(settings)
         }
         .confirmationDialog(
             "session.end_confirm",
