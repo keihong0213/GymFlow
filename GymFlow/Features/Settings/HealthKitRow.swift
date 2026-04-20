@@ -10,11 +10,13 @@ struct HealthKitRow: View {
     var body: some View {
         @Bindable var settings = settings
         Toggle(isOn: Binding(
-            get: { settings.healthSyncEnabled },
+            get: { settings.healthSyncEnabled && bootstrap.healthKit.status != .denied && bootstrap.healthKit.status != .unavailable },
             set: { newValue in
-                settings.healthSyncEnabled = newValue
                 if newValue {
+                    settings.healthSyncEnabled = true
                     Task { await requestAuth() }
+                } else {
+                    settings.healthSyncEnabled = false
                 }
             }
         )) {
@@ -45,7 +47,10 @@ struct HealthKitRow: View {
 
     private func requestAuth() async {
         requesting = true
-        _ = await bootstrap.healthKit.requestAuthorization()
+        let result = await bootstrap.healthKit.requestAuthorization()
         requesting = false
+        if result == .denied || result == .unavailable {
+            settings.healthSyncEnabled = false
+        }
     }
 }

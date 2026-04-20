@@ -14,24 +14,32 @@ final class HealthKitService {
     private let store = HKHealthStore()
     var status: AuthStatus = HKHealthStore.isHealthDataAvailable() ? .notDetermined : .unavailable
 
+    private var workoutAuthIsDenied: Bool {
+        store.authorizationStatus(for: HKObjectType.workoutType()) == .sharingDenied
+    }
+
     func requestAuthorization() async -> AuthStatus {
         guard HKHealthStore.isHealthDataAvailable() else {
-            status = .unavailable
+            await MainActor.run { status = .unavailable }
             return .unavailable
         }
         let types: Set<HKSampleType> = [HKObjectType.workoutType()]
         do {
             try await store.requestAuthorization(toShare: types, read: [])
-            // HealthKit doesn't give a read-back; treat as authorized unless save throws.
-            status = .authorized
-            return .authorized
         } catch {
-            status = .denied
+            await MainActor.run { status = .denied }
             return .denied
         }
+        // The request call doesn't itself tell us yes/no; query authorization status.
+        let denied = workoutAuthIsDenied
+        let resolved: AuthStatus = denied ? .denied : .authorized
+        await MainActor.run { status = resolved }
+        return resolved
     }
 
-    /// Fire-and-forget save. Returns true if the save attempt completed without error.
+    /// Writes an HKWorkout to HealthKit. Returns true on success.
+    /// On failure, updates `status` (denied if the permission is clearly revoked,
+    /// otherwise leaves it unchanged so transient errors don't flip the UI).
     @discardableResult
     func save(
         startedAt: Date,
@@ -39,8 +47,11 @@ final class HealthKitService {
         primaryCategory: ExerciseCategory,
         dominantCardioExercise: String?
     ) async -> Bool {
-        guard HKHealthStore.isHealthDataAvailable(),
-              endedAt > startedAt else { return false }
+        guard HKHealthStore.isHealthDataAvailable() else {
+            await MainActor.run { status = .unavailable }
+            return false
+        }
+        guard endedAt > startedAt else { return false }
         let workout = HKWorkout(
             activityType: Self.activityType(for: primaryCategory, cardioSlug: dominantCardioExercise),
             start: startedAt,
@@ -48,8 +59,12 @@ final class HealthKitService {
         )
         do {
             try await store.save(workout)
+            await MainActor.run { status = .authorized }
             return true
         } catch {
+            if workoutAuthIsDenied {
+                await MainActor.run { status = .denied }
+            }
             return false
         }
     }

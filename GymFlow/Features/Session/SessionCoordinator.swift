@@ -146,7 +146,7 @@ final class SessionCoordinator {
     }
 
     func editSet(id: UUID, weightKg: Double, reps: Int) throws {
-        try workoutRepo.updateSet(id: id, weightKg: weightKg, reps: reps)
+        try workoutRepo.replaceStrengthSet(id: id, weightKg: weightKg, reps: reps)
         for i in exercises.indices {
             if let j = exercises[i].sets.firstIndex(where: { $0.id == id }) {
                 exercises[i].sets[j].weightKg = weightKg
@@ -159,7 +159,7 @@ final class SessionCoordinator {
     }
 
     func editCardioSet(id: UUID, durationSec: Int, distanceMeters: Double?) throws {
-        try workoutRepo.updateCardioSet(id: id, durationSec: durationSec, distanceMeters: distanceMeters)
+        try workoutRepo.replaceCardioSet(id: id, durationSec: durationSec, distanceMeters: distanceMeters)
         for i in exercises.indices {
             if let j = exercises[i].sets.firstIndex(where: { $0.id == id }) {
                 exercises[i].sets[j].weightKg = 0

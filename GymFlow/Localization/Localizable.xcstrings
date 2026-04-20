@@ -3008,6 +3008,16 @@
         }
       }
     },
+    "home.multiple_workouts_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Pick a workout from this day" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "この日のワークアウトを選択" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "이 날의 운동을 선택하세요" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "选择这一天的训练" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "選擇這一天的訓練" } }
+      }
+    },
     "settings.backup_section" : {
       "extractionState" : "manual",
       "localizations" : {

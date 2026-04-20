@@ -11,13 +11,7 @@ struct SessionView: View {
     @State private var showExercisePicker = false
     @State private var showEndConfirm = false
     @State private var endFailed = false
-    @State private var editing: EditingSet?
-
-    struct EditingSet: Identifiable {
-        let entry: SetEntry
-        let exercise: Exercise
-        var id: UUID { entry.id }
-    }
+    @State private var editing: EditingSetItem?
 
     init(
         workout: Workout,
@@ -85,7 +79,7 @@ struct SessionView: View {
                         try? coordinator.deleteSet(id: id)
                     },
                     onEditSet: { set in
-                        editing = EditingSet(entry: set, exercise: section.exercise)
+                        editing = EditingSetItem(entry: set, exercise: section.exercise)
                     }
                 )
             }
@@ -178,6 +172,7 @@ struct SessionView: View {
 
     private func syncToHealthKit() {
         guard settings.healthSyncEnabled,
+              bootstrap.healthKit.status == .authorized,
               let endedAt = coordinator.workout.endedAt,
               !coordinator.exercises.isEmpty else { return }
         let startedAt = coordinator.workout.startedAt

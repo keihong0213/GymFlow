@@ -1,6 +1,11 @@
 import SwiftUI
 import UIKit
 
+struct ShareableURL: Identifiable {
+    let url: URL
+    var id: String { url.absoluteString }
+}
+
 struct ShareSheet: UIViewControllerRepresentable {
     let url: URL
 

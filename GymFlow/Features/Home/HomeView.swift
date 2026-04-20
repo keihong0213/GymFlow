@@ -12,6 +12,12 @@ struct HomeView: View {
     @State private var showSettings = false
     @State private var pastWorkout: Workout?
     @State private var showHistory = false
+    @State private var dayPicker: DayWorkoutsPick?
+
+    struct DayWorkoutsPick: Identifiable {
+        let workouts: [Workout]
+        var id: String { workouts.map { $0.id.uuidString }.joined() }
+    }
 
     struct ActiveSession: Identifiable {
         let workout: Workout
@@ -40,6 +46,23 @@ struct HomeView: View {
                     .environment(bootstrap)
                     .environment(settings)
                     .environment(\.locale, settings.effectiveLocale)
+            }
+            .confirmationDialog(
+                "home.multiple_workouts_title",
+                isPresented: Binding(
+                    get: { dayPicker != nil },
+                    set: { if !$0 { dayPicker = nil } }
+                ),
+                titleVisibility: .visible,
+                presenting: dayPicker
+            ) { pick in
+                ForEach(pick.workouts) { workout in
+                    Button(workoutTimeLabel(workout)) {
+                        dayPicker = nil
+                        pastWorkout = workout
+                    }
+                }
+                Button("common.cancel", role: .cancel) {}
             }
             .navigationDestination(isPresented: $showHistory) {
                 WorkoutHistoryView()
@@ -168,9 +191,19 @@ struct HomeView: View {
     }
 
     private func openWorkout(on day: Date) {
-        if let workout = try? bootstrap.workoutRepo.completedWorkout(on: day) {
-            pastWorkout = workout
+        let workouts = (try? bootstrap.workoutRepo.completedWorkouts(on: day)) ?? []
+        if workouts.count == 1 {
+            pastWorkout = workouts[0]
+        } else if workouts.count > 1 {
+            dayPicker = DayWorkoutsPick(workouts: workouts)
         }
+    }
+
+    private func workoutTimeLabel(_ workout: Workout) -> String {
+        let f = DateFormatter()
+        f.locale = locale
+        f.setLocalizedDateFormatFromTemplate("jmm")
+        return f.string(from: workout.startedAt)
     }
 
     private func startWorkout() {

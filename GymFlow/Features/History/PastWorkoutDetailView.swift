@@ -11,19 +11,13 @@ struct PastWorkoutDetailView: View {
 
     @State private var summary: WorkoutSummary?
     @State private var exercises: [ExerciseBlock] = []
-    @State private var editing: EditingSet?
+    @State private var editing: EditingSetItem?
     @State private var showDeleteWorkoutConfirm = false
 
     struct ExerciseBlock: Identifiable {
         let id: UUID
         let exercise: Exercise
         let sets: [SetEntry]
-    }
-
-    struct EditingSet: Identifiable {
-        let entry: SetEntry
-        let exercise: Exercise
-        var id: UUID { entry.id }
     }
 
     private var unit: WeightUnit { settings.units }
@@ -72,15 +66,15 @@ struct PastWorkoutDetailView: View {
                 set: item.entry,
                 category: item.exercise.category,
                 onSaveStrength: { kg, reps in
-                    try? bootstrap.workoutRepo.updateSet(id: item.entry.id, weightKg: kg, reps: reps)
+                    try? bootstrap.workoutRepo.replaceStrengthSet(id: item.entry.id, weightKg: kg, reps: reps)
                     load()
                 },
                 onSaveBodyweight: { reps in
-                    try? bootstrap.workoutRepo.updateSet(id: item.entry.id, weightKg: 0, reps: reps)
+                    try? bootstrap.workoutRepo.replaceStrengthSet(id: item.entry.id, weightKg: 0, reps: reps)
                     load()
                 },
                 onSaveCardio: { duration, distance in
-                    try? bootstrap.workoutRepo.updateCardioSet(id: item.entry.id, durationSec: duration, distanceMeters: distance)
+                    try? bootstrap.workoutRepo.replaceCardioSet(id: item.entry.id, durationSec: duration, distanceMeters: distance)
                     load()
                 },
                 onDelete: {
@@ -169,7 +163,7 @@ struct PastWorkoutDetailView: View {
             VStack(spacing: 0) {
                 ForEach(Array(block.sets.enumerated()), id: \.element.id) { index, set in
                     Button {
-                        editing = EditingSet(entry: set, exercise: block.exercise)
+                        editing = EditingSetItem(entry: set, exercise: block.exercise)
                     } label: {
                         setRow(index: index, set: set, category: category)
                     }
@@ -239,21 +233,11 @@ struct PastWorkoutDetailView: View {
     }
 
     private func durationString(for sec: Int) -> String {
-        let h = sec / 3600
-        let m = (sec % 3600) / 60
-        let s = sec % 60
-        if h > 0 { return String(format: "%d:%02d:%02d", h, m, s) }
-        return String(format: "%d:%02d", m, s)
+        WorkoutFormatters.duration(fromSeconds: sec)
     }
 
     private func distanceString(meters: Double) -> String {
-        let km = meters / 1000
-        let nf = NumberFormatter()
-        nf.locale = locale
-        nf.minimumFractionDigits = 0
-        nf.maximumFractionDigits = 2
-        let num = nf.string(from: NSNumber(value: km)) ?? "\(km)"
-        return "\(num) km"
+        WorkoutFormatters.distance(meters: meters, locale: locale)
     }
 
     private var titleString: String {

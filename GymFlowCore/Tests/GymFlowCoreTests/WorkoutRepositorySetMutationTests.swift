@@ -27,10 +27,10 @@ final class WorkoutRepositorySetMutationTests: XCTestCase {
         XCTAssertEqual(remaining.map(\.setNumber), [1, 3])
     }
 
-    func test_updateSet_overwritesWeightAndReps() throws {
+    func test_replaceStrengthSet_overwritesWeightAndReps() throws {
         let (_, _, we, workouts) = try makeFixture()
         let s = try workouts.addSet(workoutExerciseId: we.id, weightKg: 60, reps: 10)
-        try workouts.updateSet(id: s.id, weightKg: 62.5, reps: 8)
+        try workouts.replaceStrengthSet(id: s.id, weightKg: 62.5, reps: 8)
 
         let sets = try workouts.sets(for: we.id)
         XCTAssertEqual(sets.count, 1)

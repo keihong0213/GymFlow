@@ -175,7 +175,10 @@ public struct WorkoutRepository: Sendable {
         }
     }
 
-    public func updateSet(id: UUID, weightKg: Double, reps: Int) throws {
+    /// Replaces the set's tracked fields with a strength payload.
+    /// Clears any cardio fields that were previously set. Call `replaceCardioSet`
+    /// for cardio exercises.
+    public func replaceStrengthSet(id: UUID, weightKg: Double, reps: Int) throws {
         try database.dbWriter.write { db in
             if var set = try SetEntry.fetchOne(db, key: id.uuidString) {
                 set.weightKg = weightKg
@@ -187,7 +190,9 @@ public struct WorkoutRepository: Sendable {
         }
     }
 
-    public func updateCardioSet(id: UUID, durationSec: Int, distanceMeters: Double?) throws {
+    /// Replaces the set's tracked fields with a cardio payload.
+    /// Zeroes `weightKg` and `reps`.
+    public func replaceCardioSet(id: UUID, durationSec: Int, distanceMeters: Double?) throws {
         try database.dbWriter.write { db in
             if var set = try SetEntry.fetchOne(db, key: id.uuidString) {
                 set.weightKg = 0
@@ -237,17 +242,21 @@ public struct WorkoutRepository: Sendable {
         }
     }
 
-    public func completedWorkout(on day: Date, calendar: Calendar = .current) throws -> Workout? {
+    public func completedWorkouts(on day: Date, calendar: Calendar = .current) throws -> [Workout] {
         let start = calendar.startOfDay(for: day)
-        guard let end = calendar.date(byAdding: .day, value: 1, to: start) else { return nil }
+        guard let end = calendar.date(byAdding: .day, value: 1, to: start) else { return [] }
         return try database.reader.read { db in
             try Workout
                 .filter(Column("ended_at") != nil)
                 .filter(Column("started_at") >= start)
                 .filter(Column("started_at") < end)
                 .order(Column("started_at").desc)
-                .fetchOne(db)
+                .fetchAll(db)
         }
+    }
+
+    public func completedWorkout(on day: Date, calendar: Calendar = .current) throws -> Workout? {
+        try completedWorkouts(on: day, calendar: calendar).first
     }
 
     public func history(for exerciseId: UUID, limit: Int = 10) throws -> [ExerciseHistoryEntry] {

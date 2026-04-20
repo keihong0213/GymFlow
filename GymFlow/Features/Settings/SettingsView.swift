@@ -6,8 +6,8 @@ struct SettingsView: View {
     @Environment(SettingsStore.self) private var store
     @Environment(\.dismiss) private var dismiss
 
-    @State private var exportJSONURL: URL?
-    @State private var exportCSVURL: URL?
+    @State private var exportJSONURL: ShareableURL?
+    @State private var exportCSVURL: ShareableURL?
     @State private var exportFailed = false
 
     var body: some View {
@@ -80,11 +80,11 @@ struct SettingsView: View {
                     Button("common.done") { dismiss() }
                 }
             }
-            .sheet(item: $exportJSONURL) { url in
-                ShareSheet(url: url)
+            .sheet(item: $exportJSONURL) { wrapper in
+                ShareSheet(url: wrapper.url)
             }
-            .sheet(item: $exportCSVURL) { url in
-                ShareSheet(url: url)
+            .sheet(item: $exportCSVURL) { wrapper in
+                ShareSheet(url: wrapper.url)
             }
             .alert("settings.export_failed", isPresented: $exportFailed) {
                 Button("common.ok", role: .cancel) {}
@@ -94,7 +94,7 @@ struct SettingsView: View {
 
     private func prepareExportJSON() {
         do {
-            exportJSONURL = try bootstrap.backupService.writeJSONToTempFile()
+            exportJSONURL = ShareableURL(url: try bootstrap.backupService.writeJSONToTempFile())
         } catch {
             exportFailed = true
         }
@@ -102,13 +102,9 @@ struct SettingsView: View {
 
     private func prepareExportCSV() {
         do {
-            exportCSVURL = try bootstrap.backupService.writeCSVToTempFile()
+            exportCSVURL = ShareableURL(url: try bootstrap.backupService.writeCSVToTempFile())
         } catch {
             exportFailed = true
         }
     }
-}
-
-extension URL: @retroactive Identifiable {
-    public var id: String { absoluteString }
 }

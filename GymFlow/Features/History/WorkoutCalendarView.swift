@@ -9,6 +9,12 @@ struct WorkoutCalendarView: View {
     @State private var anchor: Date = Date()
     @State private var activeDays: Set<Date> = []
     @State private var selected: Workout?
+    @State private var dayPicker: DayWorkoutsPick?
+
+    struct DayWorkoutsPick: Identifiable {
+        let workouts: [Workout]
+        var id: String { workouts.map { $0.id.uuidString }.joined() }
+    }
 
     private var calendar: Calendar {
         var c = Calendar(identifier: .gregorian)
@@ -35,8 +41,32 @@ struct WorkoutCalendarView: View {
                 .environment(settings)
                 .environment(\.locale, settings.effectiveLocale)
         }
+        .confirmationDialog(
+            "home.multiple_workouts_title",
+            isPresented: Binding(
+                get: { dayPicker != nil },
+                set: { if !$0 { dayPicker = nil } }
+            ),
+            titleVisibility: .visible,
+            presenting: dayPicker
+        ) { pick in
+            ForEach(pick.workouts) { workout in
+                Button(workoutTimeLabel(workout)) {
+                    dayPicker = nil
+                    selected = workout
+                }
+            }
+            Button("common.cancel", role: .cancel) {}
+        }
         .onAppear { loadMonth() }
         .onChange(of: anchor) { _, _ in loadMonth() }
+    }
+
+    private func workoutTimeLabel(_ workout: Workout) -> String {
+        let f = DateFormatter()
+        f.locale = locale
+        f.setLocalizedDateFormatFromTemplate("jmm")
+        return f.string(from: workout.startedAt)
     }
 
     private var monthHeader: some View {
@@ -93,8 +123,11 @@ struct WorkoutCalendarView: View {
         Group {
             if isActive {
                 Button {
-                    if let workout = try? bootstrap.workoutRepo.completedWorkout(on: info.date) {
-                        selected = workout
+                    let workouts = (try? bootstrap.workoutRepo.completedWorkouts(on: info.date)) ?? []
+                    if workouts.count == 1 {
+                        selected = workouts[0]
+                    } else if workouts.count > 1 {
+                        dayPicker = DayWorkoutsPick(workouts: workouts)
                     }
                 } label: {
                     content(info: info, isActive: true, isToday: isToday)
