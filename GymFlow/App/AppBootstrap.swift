@@ -14,6 +14,8 @@ final class AppBootstrap {
     let localizer: ExerciseLocalizer
     let settingsStore: SettingsStore
     let analytics: Analytics
+    let backupService: BackupService
+    let healthKit: HealthKitService
 
     init() throws {
         let fm = FileManager.default
@@ -39,6 +41,8 @@ final class AppBootstrap {
         let migrated = AppBootstrap.migratingLegacyLanguage(loaded, repository: settingsRepo)
         self.settingsStore = SettingsStore(repository: settingsRepo, initial: migrated)
         self.analytics = Analytics(repository: analyticsRepo)
+        self.backupService = BackupService(workoutRepo: workoutRepo, exerciseRepo: exerciseRepo)
+        self.healthKit = HealthKitService()
     }
 
     private static let legacyLanguageKey = "app.language"

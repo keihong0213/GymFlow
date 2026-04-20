@@ -89,6 +89,7 @@ struct HomeView: View {
         }
         .sheet(isPresented: $showSettings) {
             SettingsView()
+                .environment(bootstrap)
                 .environment(settings)
                 .environment(\.locale, settings.effectiveLocale)
         }

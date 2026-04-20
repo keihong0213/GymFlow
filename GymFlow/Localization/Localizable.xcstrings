@@ -3008,6 +3008,126 @@
         }
       }
     },
+    "settings.backup_section" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Backup" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "バックアップ" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "백업" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "备份" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "備份" } }
+      }
+    },
+    "settings.backup_footer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Exports all completed workouts. Restore isn't supported yet — keep the file safe." } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "完了したワークアウトをすべて書き出します。復元はまだ未対応です。" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "완료된 운동을 모두 내보냅니다. 복원은 아직 지원되지 않습니다." } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "导出所有已完成的训练。目前尚不支持还原，请妥善保存档案。" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "匯出所有已完成的訓練。目前尚不支援還原，請妥善保存檔案。" } }
+      }
+    },
+    "settings.export_json" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Export JSON" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "JSON を書き出す" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "JSON 내보내기" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "匯出 JSON" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "匯出 JSON" } }
+      }
+    },
+    "settings.export_csv" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Export CSV" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "CSV を書き出す" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "CSV 내보내기" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "导出 CSV" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "匯出 CSV" } }
+      }
+    },
+    "settings.export_failed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Export failed" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "書き出しに失敗しました" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "내보내기 실패" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "匯出失敗" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "匯出失敗" } }
+      }
+    },
+    "settings.health_section" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Apple Health" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "Apple ヘルスケア" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "Apple 건강" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "Apple 健康" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "Apple 健康" } }
+      }
+    },
+    "settings.health_sync" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Write workouts to Apple Health" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "ワークアウトを Apple ヘルスケアに書き込む" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "운동을 Apple 건강에 기록" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "将训练写入 Apple 健康" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "將訓練寫入 Apple 健康" } }
+      }
+    },
+    "settings.health_not_determined" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tap to grant permission" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "タップして権限を許可" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "권한을 허용하려면 탭하세요" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "点击以授予权限" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "點擊以授予權限" } }
+      }
+    },
+    "settings.health_authorized" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Authorized" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "許可済み" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "허용됨" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "已授权" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "已授權" } }
+      }
+    },
+    "settings.health_denied" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Denied — enable in Settings → Health" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "拒否されました。設定 → ヘルスケアで有効にしてください" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "거부됨 — 설정 → 건강에서 허용" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "已拒绝——请到 设定 → 健康 开启" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "已拒絕——請到 設定 → 健康 開啟" } }
+      }
+    },
+    "settings.health_unavailable" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Not available on this device" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "この端末では利用できません" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "이 기기에서는 사용할 수 없습니다" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "此设备不支援" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "此裝置不支援" } }
+      }
+    },
+    "settings.health_requesting" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Requesting…" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "リクエスト中…" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "요청 중…" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "请求中…" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "請求中…" } }
+      }
+    },
     "session.distance_unit" : {
       "extractionState" : "manual",
       "localizations" : {

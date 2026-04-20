@@ -2,8 +2,13 @@ import SwiftUI
 import GymFlowCore
 
 struct SettingsView: View {
+    @Environment(AppBootstrap.self) private var bootstrap
     @Environment(SettingsStore.self) private var store
     @Environment(\.dismiss) private var dismiss
+
+    @State private var exportJSONURL: URL?
+    @State private var exportCSVURL: URL?
+    @State private var exportFailed = false
 
     var body: some View {
         @Bindable var binding = store
@@ -44,6 +49,29 @@ struct SettingsView: View {
                     }
                     .pickerStyle(.segmented)
                 }
+
+                Section {
+                    HealthKitRow()
+                } header: {
+                    Text("settings.health_section")
+                }
+
+                Section {
+                    Button {
+                        prepareExportJSON()
+                    } label: {
+                        Label("settings.export_json", systemImage: "square.and.arrow.up")
+                    }
+                    Button {
+                        prepareExportCSV()
+                    } label: {
+                        Label("settings.export_csv", systemImage: "tablecells")
+                    }
+                } header: {
+                    Text("settings.backup_section")
+                } footer: {
+                    Text("settings.backup_footer")
+                }
             }
             .navigationTitle("settings.title")
             .navigationBarTitleDisplayMode(.inline)
@@ -52,6 +80,35 @@ struct SettingsView: View {
                     Button("common.done") { dismiss() }
                 }
             }
+            .sheet(item: $exportJSONURL) { url in
+                ShareSheet(url: url)
+            }
+            .sheet(item: $exportCSVURL) { url in
+                ShareSheet(url: url)
+            }
+            .alert("settings.export_failed", isPresented: $exportFailed) {
+                Button("common.ok", role: .cancel) {}
+            }
         }
     }
+
+    private func prepareExportJSON() {
+        do {
+            exportJSONURL = try bootstrap.backupService.writeJSONToTempFile()
+        } catch {
+            exportFailed = true
+        }
+    }
+
+    private func prepareExportCSV() {
+        do {
+            exportCSVURL = try bootstrap.backupService.writeCSVToTempFile()
+        } catch {
+            exportFailed = true
+        }
+    }
+}
+
+extension URL: @retroactive Identifiable {
+    public var id: String { absoluteString }
 }

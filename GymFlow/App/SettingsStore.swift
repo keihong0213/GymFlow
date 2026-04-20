@@ -18,6 +18,11 @@ final class SettingsStore {
     var appearance: Appearance {
         didSet { persist() }
     }
+    var healthSyncEnabled: Bool {
+        didSet { UserDefaults.standard.set(healthSyncEnabled, forKey: Self.healthSyncKey) }
+    }
+
+    private static let healthSyncKey = "app.health_sync_enabled"
 
     init(repository: UserSettingsRepository, initial: UserSettings) {
         self.repository = repository
@@ -25,6 +30,7 @@ final class SettingsStore {
         self.language = initial.language
         self.defaultRestSeconds = initial.defaultRestSeconds
         self.appearance = initial.appearance
+        self.healthSyncEnabled = UserDefaults.standard.bool(forKey: Self.healthSyncKey)
     }
 
     var effectiveLocale: Locale {

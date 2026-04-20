@@ -161,6 +161,7 @@ struct SessionView: View {
             Button("session.end", role: .destructive) {
                 do {
                     try coordinator.end()
+                    syncToHealthKit()
                 } catch {
                     endFailed = true
                 }
@@ -173,6 +174,36 @@ struct SessionView: View {
         } message: {
             Text("session.end_failed_message")
         }
+    }
+
+    private func syncToHealthKit() {
+        guard settings.healthSyncEnabled,
+              let endedAt = coordinator.workout.endedAt,
+              !coordinator.exercises.isEmpty else { return }
+        let startedAt = coordinator.workout.startedAt
+        let primaryCategory = dominantCategory()
+        let cardioSlug: String? = primaryCategory == .cardio
+            ? coordinator.exercises.first(where: { $0.exercise.category == .cardio })?.exercise.slug
+            : nil
+        let service = bootstrap.healthKit
+        Task.detached {
+            await service.save(
+                startedAt: startedAt,
+                endedAt: endedAt,
+                primaryCategory: primaryCategory,
+                dominantCardioExercise: cardioSlug
+            )
+        }
+    }
+
+    private func dominantCategory() -> ExerciseCategory {
+        var counts: [ExerciseCategory: Int] = [:]
+        for section in coordinator.exercises {
+            counts[section.exercise.category, default: 0] += section.sets.count
+        }
+        return counts.max(by: { $0.value < $1.value })?.key
+            ?? coordinator.exercises.first?.exercise.category
+            ?? .other
     }
 
     private var elapsedString: String {
