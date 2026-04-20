@@ -1,9 +1,9 @@
 ---
-title: GymFlow
+title: Kintore
 layout: default
 ---
 
-# GymFlow
+# Kintore
 
 A precision workout-logging app for iOS.
 

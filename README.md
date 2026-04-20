@@ -1,6 +1,8 @@
-# GymFlow
+# Kintore
 
 Fast, minimal iOS gym-logging app. Start a workout in one tap, log a set in five seconds, see what you did last time auto-filled. No social, no coach, no diet — just training.
+
+> Internal project name: GymFlow (preserved in bundle ID `com.softplanet.GymFlow`, repo name, Swift modules, and Xcode schemes). User-facing name: **Kintore**.
 
 ## Tech
 
