@@ -350,31 +350,31 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "GymFlow"
+            "value" : "Kintore"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "GymFlow"
+            "value" : "Kintore"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "GymFlow"
+            "value" : "Kintore"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "GymFlow"
+            "value" : "Kintore"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "GymFlow"
+            "value" : "Kintore"
           }
         }
       }
@@ -2354,31 +2354,31 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Welcome to GymFlow"
+            "value" : "Welcome to Kintore"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "GymFlow へようこそ"
+            "value" : "Kintore へようこそ"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "GymFlow에 오신 것을 환영합니다"
+            "value" : "Kintore에 오신 것을 환영합니다"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "歡迎使用 GymFlow"
+            "value" : "欢迎使用 Kintore"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "歡迎使用 GymFlow"
+            "value" : "歡迎使用 Kintore"
           }
         }
       }
