@@ -345,6 +345,7 @@
 				DEVELOPMENT_TEAM = L744UZ7276;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Kintore;
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "GymFlow writes workout duration and activity to Apple Health so you can see your training alongside the rest of your health data.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -379,6 +380,7 @@
 				DEVELOPMENT_TEAM = L744UZ7276;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Kintore;
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "GymFlow writes workout duration and activity to Apple Health so you can see your training alongside the rest of your health data.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
