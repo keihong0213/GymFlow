@@ -36,7 +36,7 @@ xcodebuild -project GymFlow.xcodeproj -scheme GymFlow \
 - `GymFlowCore/` — local Swift package: GRDB models, repositories, migrations, seed data, PR calculator, formatters.
 - `GymFlowUITests/` — XCUITest golden path.
 - `PLAN.md` — product + architecture spec (authoritative, zh-Hant).
-- `PLAN_PRO.md` — post-launch monetization plan (Freemium + IAP, gated on metrics; no ads).
+- `PLAN_PRO.md` — private, local-only monetization plan; gitignored and intentionally not published to the open-source repo.
 - `docs/` — privacy policy, public site stubs.
 - `scripts/archive.sh` — TestFlight archive + export helper.
 
@@ -57,4 +57,4 @@ Every change goes through `/codex:review` (user-invoked). Do not confuse with `c
 App Store submission in flight under the Kintore rename:
 - Bundle/scheme stay `GymFlow`; user-facing strings/icons are Kintore.
 - HealthKit `NSHealthShareUsageDescription` + `NSHealthUpdateUsageDescription` are wired in Info.plist (required by App Store validation).
-- v1.0 ships as pure free; Pro plan in `PLAN_PRO.md` is post-launch and metric-gated (≥500 active users, ≥20 reviews, ≥3 months data).
+- v1.0 ships as pure free. A post-launch, metric-gated monetization plan is tracked privately in the local-only `PLAN_PRO.md` (not in this repo).
