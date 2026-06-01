@@ -55,3 +55,9 @@ xcrun altool --upload-app -f build/export/GymFlow.ipa -t ios \
 - `GymFlowCore/` — local Swift package with GRDB models, repositories, seed data
 - `GymFlowUITests/` — XCUITest golden-path
 - `PLAN.md` — product + architecture spec (Chinese, authoritative)
+
+## License
+
+Copyright © 2026 Keihong.
+
+This project is licensed under the **GNU General Public License v3.0** — see [`LICENSE`](LICENSE) for the full text. In short: you are free to use, study, modify, and redistribute the source, but any distributed derivative work must also be released under the GPL-3.0 and provide its source code.
