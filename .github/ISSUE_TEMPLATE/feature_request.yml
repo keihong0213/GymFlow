@@ -1,0 +1,38 @@
+name: Feature request
+description: Suggest something Kintore should do
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Kintore is deliberately narrow: log a set fast, see what you did last time. Things it does not do on purpose — accounts, sync, social feeds, coaching, diet tracking — are listed in the README and are unlikely to be added.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: Describe the situation in the gym where the app gets in your way.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What would you like it to do?
+    validations:
+      required: true
+  - type: dropdown
+    id: scope
+    attributes:
+      label: How big do you think this is?
+      options:
+        - A small change to an existing screen
+        - A new screen or a new setting
+        - Not sure
+    validations:
+      required: true
+  - type: checkboxes
+    id: local-only
+    attributes:
+      label: Fits the local-only design
+      options:
+        - label: This does not require an account, a server, or sending data off the device.
+          required: true

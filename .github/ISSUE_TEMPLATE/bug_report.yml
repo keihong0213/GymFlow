@@ -1,0 +1,60 @@
+name: Bug report
+description: Something in the app behaves incorrectly
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. Kintore stores everything locally, so please do not paste anything from your workout data that you would rather keep private.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What did you see, and what did you expect instead?
+      placeholder: |
+        Expected: ...
+        Actual: ...
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Start a workout
+        2. Add Bench Press
+        3. ...
+    validations:
+      required: true
+  - type: input
+    id: app-version
+    attributes:
+      label: App version
+      description: Settings → the version is shown at the bottom, or the version in App Store.
+      placeholder: "1.0"
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: Device and iOS version
+      placeholder: "iPhone 15 Pro, iOS 18.2"
+    validations:
+      required: true
+  - type: dropdown
+    id: language
+    attributes:
+      label: App language
+      options:
+        - 繁體中文 (zh-Hant)
+        - 简体中文 (zh-Hans)
+        - English
+        - 日本語
+        - 한국어
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: Screenshots or anything else
+      description: Optional. A screenshot of the screen where it goes wrong helps a lot.
