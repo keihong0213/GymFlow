@@ -29,7 +29,7 @@ No accounts. No server. No social feed, coach, diet tracking or streaks. Your da
 
 ## Open source
 
-Kintore is open source under the GPL-3.0 licence.
+Kintore is open source under the MIT licence.
 
 - [Source on GitHub](https://github.com/keihong0213/GymFlow)
 - [Report a bug or request a feature](https://github.com/keihong0213/GymFlow/issues)

@@ -20,4 +20,4 @@
 - [ ] User-visible strings go through `Localizable.xcstrings` (no hard-coded literals)
 - [ ] Weights are formatted through `WeightFormatter`, not by hand
 - [ ] Schema changes are a new GRDB migration (no edits to shipped migrations)
-- [ ] I agree my contribution is licensed under GPL-3.0
+- [ ] I agree my contribution is licensed under the MIT License

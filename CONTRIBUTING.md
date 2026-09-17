@@ -46,7 +46,7 @@ These are the ones that get flagged most often in review (the full list lives in
 - Branch off `main`, keep the change focused, and describe what you changed and how you verified it.
 - Reference the issue it closes.
 - Screenshots (or a short screen recording) are very welcome for anything that changes the UI.
-- By contributing, you agree your contributions are licensed under the project's GPL-3.0 license.
+- By contributing, you agree your contributions are licensed under the project's MIT license.
 
 ## Translations
 

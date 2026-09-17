@@ -1,7 +1,7 @@
 # Kintore — a local-only workout logger for iOS
 
 [![Download on the App Store](https://img.shields.io/badge/App%20Store-Download-0D96F6?logo=apple&logoColor=white)](https://apps.apple.com/app/id6762633868)
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 ![Platform](https://img.shields.io/badge/platform-iOS%2017%2B-lightgrey.svg)
 ![Swift](https://img.shields.io/badge/Swift-6.0-orange.svg)
 
@@ -102,4 +102,6 @@ Contributions are welcome — bug fixes, translation fixes, accessibility improv
 
 Copyright © 2026 Keihong.
 
-Licensed under the **GNU General Public License v3.0** — see [`LICENSE`](LICENSE) for the full text. In short: you are free to use, study, modify and redistribute the source, but any distributed derivative work must also be released under the GPL-3.0 and provide its source code.
+Licensed under the **MIT License** — see [`LICENSE`](LICENSE). Use it, fork it, ship it; keeping the copyright notice is all that is asked.
+
+> Everything up to and including the [`v1.0.0`](https://github.com/keihong0213/GymFlow/releases/tag/v1.0.0) tag was published under GPL-3.0, and that release remains available under those terms. Everything from the relicensing commit onward is MIT.
